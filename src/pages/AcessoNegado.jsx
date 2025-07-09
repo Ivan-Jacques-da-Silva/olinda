@@ -25,7 +25,7 @@ const AcessoNegado = () => {
             <Button 
               variant="primary" 
               onClick={() => navigate('/login')}
-              style={{ backgroundColor: '#001A47', border: 'none' }}
+              style={{ backgroundColor: '#135454', border: 'none' }}
             >
               <i className="bi bi-box-arrow-in-right me-2"></i>
               Fazer Login

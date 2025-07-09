@@ -19,7 +19,7 @@ function Sessao2() {
       className="py-5"
       style={{
         // backgroundImage: `url(${fundoSessao2})`,
-        backgroundColor: '#010329',
+        backgroundColor: '#0F3F3F',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -121,7 +121,7 @@ function Sessao2() {
 
         <div className="text-center" style={{ paddingTop: '80px' }}>
           <iframe
-            src="https://tour360.meupasseiovirtual.com/067962/278515/tourvirtual/index.html"
+            src="https://tour.meupasseiovirtual.com/view/gUWC73DXAkD"
             width="100%"
             height="600"
             style={{
@@ -146,7 +146,7 @@ function Sessao2() {
             className="px-4 py-2 d-inline-block"
             style={{
               backgroundColor: '#fff',
-              color: '#001A47',
+              color: '#135454',
               border: 'none',
               borderRadius: '4px',
               fontWeight: 'bold',

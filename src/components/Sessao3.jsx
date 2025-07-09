@@ -3,7 +3,7 @@ import imgMockup from '../img/mockupTelasSistemas.png';
 
 function Sessao3() {
   return (
-    <section style={{ backgroundColor: '#0e0e15', margin: "115px 0 80px 0" }}>
+    <section style={{ backgroundColor: '#135454', margin: "115px 0 80px 0" }}>
       <div className="container text-center text-white">
         <h2 style={{ fontSize: '2.5rem' }}>
           <span style={{ fontWeight: 300 }}>Navegue em </span>
@@ -29,7 +29,7 @@ function Sessao3() {
             className="px-4 py-2 d-inline-block"
             style={{
               backgroundColor: '#fff',
-              color: '#001A47',
+              color: '#135454',
               border: 'none',
               borderRadius: '4px',
               fontWeight: 'bold',

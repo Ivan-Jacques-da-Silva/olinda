@@ -25,20 +25,20 @@ html {
 
 .btn-warning {
     background-color: #fff;
-    color: #001A47;
-    border: 1px solid #001A47;
+    color: #135454;
+    border: 1px solid #135454;
 }
 
 .btn-warning:hover {
     background-color: #f8f9fa;
     /* ou mantém #fff */
-    border-color: #001A47;
-    color: #001A47;
+    border-color: #135454;
+    color: #135454;
 }
 
 
 .ws-header {
-    background-color: #0e0e15 !important;
+    background-color: #135454 !important;
 }
 
 .ws-logo-container {
@@ -75,8 +75,8 @@ html {
 
 .ws-pdf-button {
     background-color: #fff;
-    color: #001A47;
-    border: 1px solid #001A47;
+    color: #135454;
+    border: 1px solid #135454;
     text-decoration: none !important;
     font-weight: 500 !important;
     text-transform: uppercase !important;
@@ -88,7 +88,7 @@ html {
 
 .ws-pdf-button:hover {
     background-color: #f0f0f0 !important;
-    color: #0e0e15 !important;
+    color: #135454 !important;
     transform: translateY(-2px);
 }
 
@@ -190,6 +190,6 @@ html {
 /* .btn-warning:focus, */
 .btn-warning:hover {
   background-color: #f6faff !important;
-  color: #001A47 !important;
-  border: 1px solid #001A47 !important;
+  color: #135454 !important;
+  border: 1px solid #135454 !important;
 }

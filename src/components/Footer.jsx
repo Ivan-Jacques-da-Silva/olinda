@@ -1,6 +1,6 @@
 import React from 'react';
 import imagemFundoFooter from '../img/footer.webp';
-import logoFooter from '../img/logoFooter.webp';
+import logoFooter from '../img/logo.png';
 
 function Rodape() {
   return (
@@ -41,8 +41,8 @@ function Rodape() {
               <button
                 style={{
                   backgroundColor: '#fff',
-                  color: '#001A47',
-                  border: '3px solid #001A47',
+                  color: '#135454',
+                  border: '3px solid #135454',
                   borderRadius: '4px',
                   padding: '10px 20px',
                   fontWeight: 'bold',

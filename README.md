@@ -1,6 +1,6 @@
-# Wall Street Corporate - Frontend
+# Olinda Residence - Frontend
 
-Interface visual para gerenciamento e visualização de salas comerciais do empreendimento **Wall Street Corporate**.
+Interface visual para gerenciamento e visualização de salas comerciais do empreendimento **Olinda Residence**.
 
 ## 🚀 Tecnologias
 

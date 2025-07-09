@@ -57,7 +57,7 @@ function Sessao1() {
 
       <div
         style={{
-          backgroundColor: '#001A47',
+          backgroundColor: '#135454',
           mixBlendMode: 'overlay',
           position: 'absolute',
           top: 0,
@@ -105,7 +105,7 @@ function Sessao1() {
                 style={{
                   backgroundColor: '#fff',
                   border: 'none',
-                  color: '#001A47',
+                  color: '#135454',
                   marginBottom: '10px',
                   borderRadius: '4px'
                 }}
@@ -123,7 +123,7 @@ function Sessao1() {
                 style={{
                   backgroundColor: '#fff',
                   border: 'none',
-                  color: '#001A47',
+                  color: '#135454',
                   borderRadius: '4px'
                 }}
                 className="fw-bold px-4 py-2"
@@ -149,7 +149,7 @@ function Sessao1() {
             <div className="predio-container">
               <img src={predio1} alt="Prédio" style={{ width: '280px', height: '730px' }} />
 
-              {posicoesAndares.map(({ andar, top }) => (
+              {/* {posicoesAndares.map(({ andar, top }) => (
                 <React.Fragment key={andar}>
                   <div style={{ position: 'absolute', top: `${top}px`, left: '120px' }}>
                     <button
@@ -186,13 +186,12 @@ function Sessao1() {
                     fontWeight: 300,
                     whiteSpace: 'nowrap'
                   }}>
-                    {/* {andar}º Andar{andar === 5 ? ' – Pavimento Prime' : ''} */}
                     {andar}º Andar{andar === 5 ? <><br />Pavimento <br /> Prime</> : ''}
 
 
                   </div>
                 </React.Fragment>
-              ))}
+              ))} */}
 
               <div
                 className="bem-vindo-mobile"

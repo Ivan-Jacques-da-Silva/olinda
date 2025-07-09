@@ -190,7 +190,7 @@ const Andares = () => {
                                     INÍCIO
                                 </Link>
                                 <a
-                                    href="https://tour360.meupasseiovirtual.com/067962/278515/tourvirtual/index.html"
+                                    href="https://tour.meupasseiovirtual.com/view/gUWC73DXAkD"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="ws-nav-link mx-3"
@@ -208,7 +208,7 @@ const Andares = () => {
                                     style={{
                                         backgroundColor: "#fff",
                                         border: "none",
-                                        color: "#001A47",
+                                        color: "#135454",
                                     }}
                                     className="ws-pdf-button mx-3"
                                 >
@@ -270,7 +270,7 @@ const Andares = () => {
                                 className="btn fw-bold"
                                 style={{
                                     backgroundColor: "#FFF",
-                                    color: "#001A47",
+                                    color: "#135454",
                                 }}
                                 onClick={() => setMostrarMenu(false)}
                             >

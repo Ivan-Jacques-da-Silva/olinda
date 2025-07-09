@@ -46,7 +46,7 @@ const Login = () => {
     <Container className="d-flex justify-content-center align-items-center min-vh-100">
       <Card style={{ width: '100%', maxWidth: '400px' }}>
         <Card.Body className="p-4">
-          <h3 className="text-center mb-4" style={{ color: '#001A47' }}>
+          <h3 className="text-center mb-4" style={{ color: '#135454' }}>
             Painel Administrativo
           </h3>
           
@@ -80,7 +80,7 @@ const Login = () => {
               variant="primary" 
               className="w-100"
               disabled={loading}
-              style={{ backgroundColor: '#001A47', border: 'none' }}
+              style={{ backgroundColor: '#135454', border: 'none' }}
             >
               {loading ? 'Entrando...' : 'Entrar'}
             </Button>

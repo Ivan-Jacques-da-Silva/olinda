@@ -211,8 +211,8 @@ export function ContrapropostaForm() {
                                     className="btn fw-bold rounded-pill py-3"
                                     style={{
                                         backgroundColor: "#fff",
-                                        color: "#001A47",
-                                        border: "3px solid #001A47",
+                                        color: "#135454",
+                                        border: "3px solid #135454",
                                     }}
                                 >
                                     {loading
@@ -428,8 +428,8 @@ export function AgendarReuniaoForm() {
                                     className="btn fw-bold rounded-pill py-3"
                                     style={{
                                         backgroundColor: "#fff",
-                                        color: "#001A47",
-                                        border: "3px solid #001A47",
+                                        color: "#135454",
+                                        border: "3px solid #135454",
                                     }}
                                 >
                                     {loading

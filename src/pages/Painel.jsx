@@ -533,7 +533,7 @@ const Painel = () => {
                         className="d-flex align-items-center mb-2 rounded-pill px-4"
                         style={{
                             background:
-                                "linear-gradient(135deg, #001A47 0%, #003875 100%)",
+                                "linear-gradient(135deg, #135454 0%, #003875 100%)",
                             border: "none",
                         }}
                     >
@@ -759,7 +759,7 @@ const Painel = () => {
                 className="shadow-sm px-4 py-3 mb-4"
                 style={{
                     background:
-                        "linear-gradient(135deg, #001A47 0%, #003875 100%)",
+                        "linear-gradient(135deg, #135454 0%, #003875 100%)",
                 }}
             >
                 <Navbar.Brand className="fw-bold text-uppercase text-white d-flex align-items-center">
@@ -825,7 +825,7 @@ const Painel = () => {
                                         className="d-flex align-items-center rounded-pill px-4 py-2"
                                         style={{
                                             background:
-                                                "linear-gradient(135deg, #001A47 0%, #003875 100%)",
+                                                "linear-gradient(135deg, #135454 0%, #003875 100%)",
                                             border: "none",
                                         }}
                                     >
@@ -1893,7 +1893,7 @@ const Painel = () => {
                                                                             className="d-flex align-items-center mx-auto rounded-pill px-4"
                                                                             style={{
                                                                                 background:
-                                                                                    "linear-gradient(135deg, #001A47 0%, #003875 100%)",
+                                                                                    "linear-gradient(135deg, #135454 0%, #003875 100%)",
                                                                                 border: "none",
                                                                             }}
                                                                         >
@@ -2051,7 +2051,7 @@ const Painel = () => {
                             className="rounded-pill px-4"
                             style={{
                                 background:
-                                    "linear-gradient(135deg, #001A47 0%, #003875 100%)",
+                                    "linear-gradient(135deg, #135454 0%, #003875 100%)",
                                 border: "none",
                             }}
                         >
@@ -2076,7 +2076,7 @@ const Painel = () => {
 
             <footer
                 className="text-center py-4 mt-5"
-                style={{ backgroundColor: "#001A47" }}
+                style={{ backgroundColor: "#135454" }}
             >
                 <small className="text-white">
                     Wall Street Corporate © {new Date().getFullYear()}

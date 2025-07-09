@@ -19,7 +19,7 @@ import CheckoutCancelado from './pages/CheckoutCancelado.jsx';
 function App() {
   return (
     <Router>
-      <div className="w-100" style={{ backgroundColor: '#0e0e15' }}>
+      <div className="w-100" style={{ backgroundColor: '#135454' }}>
 
         <Routes>
           <Route path="/" element={<Home />} />
