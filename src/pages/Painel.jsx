@@ -533,7 +533,7 @@ const Painel = () => {
                         className="d-flex align-items-center mb-2 rounded-pill px-4"
                         style={{
                             background:
-                                "linear-gradient(135deg, #135454 0%, #003875 100%)",
+                                "linear-gradient(135deg, #001A47 0%, #003875 100%)",
                             border: "none",
                         }}
                     >
@@ -623,6 +623,27 @@ const Painel = () => {
                                                 />
                                                 {item.contato}
                                             </div>
+                                            {item.sala && (
+                                                <>
+                                                    <div className="col-12">
+                                                        <Building
+                                                            size={14}
+                                                            className="me-2"
+                                                        />
+                                                        {item.sala.nome} - {item.sala.andar}° andar
+                                                    </div>
+                                                    <div className="col-12">
+                                                        <DollarSign
+                                                            size={14}
+                                                            className="me-2"
+                                                        />
+                                                        R$ {parseFloat(item.sala.preco).toLocaleString('pt-BR', {
+                                                            minimumFractionDigits: 2,
+                                                            maximumFractionDigits: 2
+                                                        })}
+                                                    </div>
+                                                </>
+                                            )}
                                             {item.proposta && (
                                                 <div className="col-12">
                                                     <div className="bg-light p-2 rounded mt-2">
@@ -759,7 +780,7 @@ const Painel = () => {
                 className="shadow-sm px-4 py-3 mb-4"
                 style={{
                     background:
-                        "linear-gradient(135deg, #135454 0%, #003875 100%)",
+                        "linear-gradient(135deg, #001A47 0%, #003875 100%)",
                 }}
             >
                 <Navbar.Brand className="fw-bold text-uppercase text-white d-flex align-items-center">
@@ -825,7 +846,7 @@ const Painel = () => {
                                         className="d-flex align-items-center rounded-pill px-4 py-2"
                                         style={{
                                             background:
-                                                "linear-gradient(135deg, #135454 0%, #003875 100%)",
+                                                "linear-gradient(135deg, #001A47 0%, #003875 100%)",
                                             border: "none",
                                         }}
                                     >
@@ -955,7 +976,7 @@ const Painel = () => {
                                                             <Badge
                                                                 bg="light"
                                                                 text="dark"
-                                                                                               className="fs-6"
+                                                                className="fs-6"
                                                             >
                                                                 {sala.andar}°
                                                             </Badge>
@@ -1457,15 +1478,15 @@ const Painel = () => {
                                                         <Badge
                                                             bg={
                                                                 item.operacao ===
-                                                                "CREATE"
+                                                                    "CREATE"
                                                                     ? "success"
                                                                     : item.operacao ===
                                                                         "UPDATE"
-                                                                      ? "warning"
-                                                                      : item.operacao ===
-                                                                          "DELETE"
-                                                                        ? "danger"
-                                                                        : "info"
+                                                                        ? "warning"
+                                                                        : item.operacao ===
+                                                                            "DELETE"
+                                                                            ? "danger"
+                                                                            : "info"
                                                             }
                                                         >
                                                             {item.operacao}
@@ -1493,10 +1514,10 @@ const Painel = () => {
                                                             variant="outline-info"
                                                             onClick={() => {
                                                                 const detalhes =
-                                                                    {
-                                                                        antes: item.dados_antes,
-                                                                        depois: item.dados_depois,
-                                                                    };
+                                                                {
+                                                                    antes: item.dados_antes,
+                                                                    depois: item.dados_depois,
+                                                                };
                                                                 alert(
                                                                     `Detalhes:\n${JSON.stringify(detalhes, null, 2)}`,
                                                                 );
@@ -1798,66 +1819,66 @@ const Painel = () => {
                                                             {/* Preview do PDF atual ou selecionado */}
                                                             {(salaEdicao?.propostaPdfFile ||
                                                                 salaEdicao?.proposta_pdf) && (
-                                                                <div className="bg-white p-3 rounded border d-flex align-items-center justify-content-between">
-                                                                    <div className="d-flex align-items-center">
-                                                                        <i
-                                                                            className="bi bi-file-earmark-pdf text-danger me-2"
-                                                                            style={{
-                                                                                fontSize:
-                                                                                    "24px",
-                                                                            }}
-                                                                        ></i>
-                                                                        <div>
-                                                                            <div className="fw-medium">
-                                                                                {salaEdicao?.propostaPdfFile
-                                                                                    ? salaEdicao
-                                                                                          .propostaPdfFile
-                                                                                          .name
-                                                                                    : salaEdicao?.proposta_pdf || `proposta-${salaEdicao?.numero || "atual"}.pdf`}
+                                                                    <div className="bg-white p-3 rounded border d-flex align-items-center justify-content-between">
+                                                                        <div className="d-flex align-items-center">
+                                                                            <i
+                                                                                className="bi bi-file-earmark-pdf text-danger me-2"
+                                                                                style={{
+                                                                                    fontSize:
+                                                                                        "24px",
+                                                                                }}
+                                                                            ></i>
+                                                                            <div>
+                                                                                <div className="fw-medium">
+                                                                                    {salaEdicao?.propostaPdfFile
+                                                                                        ? salaEdicao
+                                                                                            .propostaPdfFile
+                                                                                            .name
+                                                                                        : salaEdicao?.proposta_pdf || `proposta-${salaEdicao?.numero || "atual"}.pdf`}
+                                                                                </div>
+                                                                                <small className="text-muted">
+                                                                                    {salaEdicao?.propostaPdfFile
+                                                                                        ? "Arquivo selecionado"
+                                                                                        : "Arquivo atual"}
+                                                                                </small>
                                                                             </div>
-                                                                            <small className="text-muted">
-                                                                                {salaEdicao?.propostaPdfFile
-                                                                                    ? "Arquivo selecionado"
-                                                                                    : "Arquivo atual"}
-                                                                            </small>
                                                                         </div>
-                                                                    </div>
-                                                                    <div className="d-flex gap-2">
-                                                                        {/* Botão Visualizar se existe PDF atual */}
-                                                                        {salaEdicao?.proposta_pdf && !salaEdicao?.propostaPdfFile && (
+                                                                        <div className="d-flex gap-2">
+                                                                            {/* Botão Visualizar se existe PDF atual */}
+                                                                            {salaEdicao?.proposta_pdf && !salaEdicao?.propostaPdfFile && (
+                                                                                <Button
+                                                                                    size="sm"
+                                                                                    variant="outline-info"
+                                                                                    onClick={() =>
+                                                                                        window.open(
+                                                                                            `${Config.api_url}/uploads/${salaEdicao.proposta_pdf}`,
+                                                                                            '_blank'
+                                                                                        )
+                                                                                    }
+                                                                                    className="rounded-pill px-3"
+                                                                                >
+                                                                                    <i className="bi bi-eye me-1"></i>
+                                                                                    Ver
+                                                                                </Button>
+                                                                            )}
                                                                             <Button
                                                                                 size="sm"
-                                                                                variant="outline-info"
+                                                                                variant="outline-primary"
                                                                                 onClick={() =>
-                                                                                    window.open(
-                                                                                        `${Config.api_url}/uploads/${salaEdicao.proposta_pdf}`,
-                                                                                        '_blank'
-                                                                                    )
+                                                                                    document
+                                                                                        .getElementById(
+                                                                                            "proposta-pdf-input",
+                                                                                        )
+                                                                                        .click()
                                                                                 }
                                                                                 className="rounded-pill px-3"
                                                                             >
-                                                                                <i className="bi bi-eye me-1"></i>
-                                                                                Ver
+                                                                                <i className="bi bi-pencil me-1"></i>
+                                                                                Alterar
                                                                             </Button>
-                                                                        )}
-                                                                        <Button
-                                                                            size="sm"
-                                                                            variant="outline-primary"
-                                                                            onClick={() =>
-                                                                                document
-                                                                                    .getElementById(
-                                                                                        "proposta-pdf-input",
-                                                                                    )
-                                                                                    .click()
-                                                                            }
-                                                                            className="rounded-pill px-3"
-                                                                        >
-                                                                            <i className="bi bi-pencil me-1"></i>
-                                                                            Alterar
-                                                                        </Button>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            )}
+                                                                )}
 
                                                             {/* Botão para selecionar PDF quando não há arquivo */}
                                                             {!salaEdicao?.propostaPdfFile &&
@@ -1893,7 +1914,7 @@ const Painel = () => {
                                                                             className="d-flex align-items-center mx-auto rounded-pill px-4"
                                                                             style={{
                                                                                 background:
-                                                                                    "linear-gradient(135deg, #135454 0%, #003875 100%)",
+                                                                                    "linear-gradient(135deg, #001A47 0%, #003875 100%)",
                                                                                 border: "none",
                                                                             }}
                                                                         >
@@ -2033,7 +2054,8 @@ const Painel = () => {
                                             </Col>
                                         </Row>
                                     </Card.Body>
-                </Card>
+                                </Card>
+
                             </Col>
                         </Row>
                     </Modal.Body>
@@ -2051,7 +2073,7 @@ const Painel = () => {
                             className="rounded-pill px-4"
                             style={{
                                 background:
-                                    "linear-gradient(135deg, #135454 0%, #003875 100%)",
+                                    "linear-gradient(135deg, #001A47 0%, #003875 100%)",
                                 border: "none",
                             }}
                         >
@@ -2076,7 +2098,7 @@ const Painel = () => {
 
             <footer
                 className="text-center py-4 mt-5"
-                style={{ backgroundColor: "#135454" }}
+                style={{ backgroundColor: "#001A47" }}
             >
                 <small className="text-white">
                     Wall Street Corporate © {new Date().getFullYear()}

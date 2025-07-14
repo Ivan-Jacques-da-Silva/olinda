@@ -179,7 +179,7 @@ const Andares = () => {
                             <Link to="/">
                                 <img
                                     src={logo}
-                                    alt="Wall Street Corporate"
+                                    alt="Olinda Reidence"
                                     className="ws-logo-img"
                                 />
                             </Link>
@@ -426,7 +426,7 @@ const Andares = () => {
                                 </h4>
                                 <div className="bg-dark text-white p-3 rounded text-center mb-3">
                                     <div className="fw-bold fs-5">
-                                        WALL STREET CORPORATE
+                                        OLINDA RESIDENCE
                                     </div>
                                     <div className="fw-bold text-white mt-2">
                                         {salaAtual?.atributos?.nome?.[0]?.valor

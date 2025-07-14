@@ -74,7 +74,7 @@ function Sessao1() {
             <div className="mb-md-5 mb-0">
               <img
                 src={logoCompleto}
-                alt="Wall Street Corporate"
+                alt="Olinda Residence"
                 className="logo-header"
               />
             </div>

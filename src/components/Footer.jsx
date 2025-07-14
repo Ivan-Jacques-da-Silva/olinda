@@ -18,7 +18,7 @@ function Rodape() {
             <div className="col-md-6 text-center text-md-start">
               <img
                 src={logoFooter}
-                alt="Wall Street Corporate"
+                alt="Olinda Residence"
                 style={{ maxWidth: '220px' }}
               />
 
@@ -58,7 +58,7 @@ function Rodape() {
       {/* Barra preta inferior */}
       <div style={{ backgroundColor: '#000', padding: '25px 0' }}>
         <div className="container text-center text-white">
-          <small>Todos os direitos 2025 © Wall Street | Política de privacidade</small>
+          <small>Todos os direitos 2025 © Olinda Residence | Política de privacidade</small>
         </div>
       </div>
     </footer>
