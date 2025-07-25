@@ -107,7 +107,7 @@ function CheckoutSucesso() {
               marginBottom: '30px',
               lineHeight: '1.6'
             }}>
-              Sua reserva foi efetuada com sucesso. Em breve entraremos em contato para concluir sua negociação! Seja Bem Vindo ao Novo! Wall Street Corporate
+              Sua reserva foi efetuada com sucesso. Em breve entraremos em contato para concluir sua negociação! Seja Bem Vindo ao Novo! Olinda Residence
             </p>
             
             {dadosSessao?.metadata?.nome_sala && (
@@ -195,7 +195,7 @@ function CheckoutSucesso() {
               <button 
                 onClick={verificarPagamento}
                 style={{
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                  background: 'linear-gradient(135deg, #135454, #0d3d3d)',
                   color: 'white',
                   padding: '12px 30px',
                   borderRadius: '25px',

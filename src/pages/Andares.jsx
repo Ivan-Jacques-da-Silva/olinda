@@ -18,14 +18,14 @@ const Andares = () => {
     const [searchParams] = useSearchParams();
     const andarUrl = searchParams.get("andar");
     const [larguraTela, setLarguraTela] = useState(window.innerWidth);
-    const [andarSelecionado, setAndarSelecionado] = useState("15° andar");
+    const [andarSelecionado, setAndarSelecionado] = useState("16° andar");
     const [salaSelecionada, setSalaSelecionada] = useState(1);
     const [mostrarMenu, setMostrarMenu] = useState(false);
     const [dadosProduto, setDadosProduto] = useState(null);
     const [mostrarProposta, setMostrarProposta] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const andares = Array.from({ length: 15 }, (_, i) => `${19 - i}° andar`);
+    const andares = Array.from({ length: 12 }, (_, i) => `${16 - i}° andar`);
 
     useEffect(() => {
         if (andarUrl) setAndarSelecionado(`${andarUrl}° andar`);

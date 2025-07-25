@@ -18,8 +18,8 @@ router.post('/admin/login', async (req, res) => {
 
     // Definir usuários e suas permissões
     const usuarios = {
-      'wallstreet': {
-        senha: 'wallstreet@2025',
+      'Olinda': {
+        senha: 'Olinda@2025',
         token: 'admin-token-123',
         permissoes: ['formularios', 'agendamentos', 'salas', 'admin', 'historico']
       },

@@ -74,7 +74,7 @@ const Painel = () => {
         setUsuario(nomeUsuario);
 
         // Definir aba padrão baseada no usuário
-        if (nomeUsuario === 'wallstreet' && permissoesUsuario.includes('salas')) {
+        if (nomeUsuario === 'Olinda' && permissoesUsuario.includes('salas')) {
             setActiveTab('salas');
         } else if (nomeUsuario === 'corretor' && permissoesUsuario.includes('formularios')) {
             setActiveTab('formularios');
@@ -563,7 +563,7 @@ const Painel = () => {
                         className="d-flex align-items-center mb-2 rounded-pill px-4"
                         style={{
                             background:
-                                "linear-gradient(135deg, #001A47 0%, #003875 100%)",
+                                "linear-gradient(135deg, #135454 0%, #147979ff 100%)",
                             border: "none",
                         }}
                     >
@@ -639,6 +639,10 @@ const Painel = () => {
                                         </div>
 
                                         <div className="row g-2 small text-muted">
+                                            <div className="col-12">
+                                                <i className="bi bi-person-badge me-2"></i>
+                                                {item.cpf_cnpj}
+                                            </div>
                                             <div className="col-12">
                                                 <Mail
                                                     size={14}
@@ -824,12 +828,12 @@ const Painel = () => {
                 className="shadow-sm px-4 py-3 mb-4"
                 style={{
                     background:
-                        "linear-gradient(135deg, #001A47 0%, #003875 100%)",
+                        "linear-gradient(135deg, #135454 0%, #147979ff 100%)",
                 }}
             >
                 <Navbar.Brand className="fw-bold text-uppercase text-white d-flex align-items-center">
                     <Building className="me-2" />
-                    Painel Administrativo - Wall Street
+                    Painel Administrativo - Olinda Residence
                 </Navbar.Brand>
                 <Nav className="ms-auto">
                     <Link
@@ -891,7 +895,7 @@ const Painel = () => {
                                             className="d-flex align-items-center rounded-pill px-4 py-2"
                                             style={{
                                                 background:
-                                                    "linear-gradient(135deg, #001A47 0%, #003875 100%)",
+                                                    "linear-gradient(135deg, #135454 0%, #147979ff 100%)",
                                                 border: "none",
                                             }}
                                         >
@@ -1966,7 +1970,7 @@ const Painel = () => {
                                                                             className="d-flex align-items-center mx-auto rounded-pill px-4"
                                                                             style={{
                                                                                 background:
-                                                                                    "linear-gradient(135deg, #001A47 0%, #003875 100%)",
+                                                                                    "linear-gradient(135deg, #135454 0%, #147979ff 100%)",
                                                                                 border: "none",
                                                                             }}
                                                                         >
@@ -2125,7 +2129,7 @@ const Painel = () => {
                             className="rounded-pill px-4"
                             style={{
                                 background:
-                                    "linear-gradient(135deg, #001A47 0%, #003875 100%)",
+                                    "linear-gradient(135deg, #135454 0%, #147979ff 100%)",
                                 border: "none",
                             }}
                         >
@@ -2150,10 +2154,10 @@ const Painel = () => {
 
             <footer
                 className="text-center py-4 mt-5"
-                style={{ backgroundColor: "#001A47" }}
+                style={{ backgroundColor: "#135454" }}
             >
                 <small className="text-white">
-                    Wall Street Corporate © {new Date().getFullYear()}
+                    Olinda Residence © {new Date().getFullYear()}
                 </small>
             </footer>
         </Container>

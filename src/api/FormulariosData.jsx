@@ -101,6 +101,16 @@ export function ContrapropostaForm() {
     const Notification = ({ show, onHide, type, title, message }) => {
         const bgColor = type === 'success' ? 'bg-success' : 'bg-danger';
 
+        React.useEffect(() => {
+            if (show) {
+                const timer = setTimeout(() => {
+                    onHide();
+                }, 5000); // 5 segundos
+
+                return () => clearTimeout(timer);
+            }
+        }, [show, onHide]);
+
         return (
             <AnimatePresence>
                 {show && (
@@ -149,7 +159,7 @@ export function ContrapropostaForm() {
                             onClick={(e) => e.stopPropagation()}
                             className="position-absolute top-50 start-50 translate-middle p-4"
                             style={{
-                                background: "rgba(0, 69, 138, 0.9)",
+                                background: "rgba(19, 84, 84, 0.9)",
                                 borderRadius: "20px",
                                 width: "90%",
                                 maxWidth: "400px",
@@ -282,11 +292,11 @@ export function AgendarReuniaoForm() {
 
             if (json.sucesso) {
                 setMostrarModal(false);
-                setNotification({
+                                setNotification({
                     show: true,
                     type: 'success',
                     title: 'Sucesso!',
-                    message: json.mensagem
+                    message: 'Reunião agendada com sucesso!'
                 });
                 event.target.reset();
             } else {
@@ -311,6 +321,16 @@ export function AgendarReuniaoForm() {
 
         const Notification = ({ show, onHide, type, title, message }) => {
         const bgColor = type === 'success' ? 'bg-success' : 'bg-danger';
+
+        React.useEffect(() => {
+            if (show) {
+                const timer = setTimeout(() => {
+                    onHide();
+                }, 5000); // 5 segundos
+
+                return () => clearTimeout(timer);
+            }
+        }, [show, onHide]);
 
         return (
             <AnimatePresence>
@@ -361,7 +381,7 @@ export function AgendarReuniaoForm() {
                             onClick={(e) => e.stopPropagation()}
                             className="position-absolute top-50 start-50 translate-middle p-4"
                             style={{
-                                background: "rgba(0, 69, 138, 0.9)",
+                                background: "rgba(19, 84, 84, 0.9)",
                                 borderRadius: "20px",
                                 width: "90%",
                                 maxWidth: "400px",

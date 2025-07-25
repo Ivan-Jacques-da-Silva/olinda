@@ -18,7 +18,7 @@ const enviarNotificacaoContraproposta = async (dados) => {
     const mailOptions = {
         from: process.env.EMAIL_USER || 'seu-email@gmail.com',
         to: 'gerencia01@wcostella.com.br',
-        subject: '🏢 Nova Contraproposta Recebida - Wall Street Corporate',
+        subject: '🏢 Nova Contraproposta Recebida - Olinda Residence',
         html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #2c3e50;">Nova Contraproposta Recebida</h2>
@@ -38,7 +38,7 @@ const enviarNotificacaoContraproposta = async (dados) => {
         
         <hr style="border: 1px solid #dee2e6;">
         <p style="color: #6c757d; font-size: 12px; text-align: center;">
-          Esta é uma notificação automática do sistema Wall Street Corporate
+          Esta é uma notificação automática do sistema Olinda Residence
         </p>
       </div>
     `
@@ -57,7 +57,7 @@ const enviarNotificacaoAgendamento = async (dados) => {
     const mailOptions = {
         from: process.env.EMAIL_USER || 'seu-email@gmail.com',
         to: 'gerencia01@wcostella.com.br',
-        subject: '📅 Nova Reunião Agendada - Wall Street Corporate',
+        subject: '📅 Nova Reunião Agendada - Olinda Residence',
         html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #2c3e50;">Nova Reunião Agendada</h2>
@@ -80,7 +80,7 @@ const enviarNotificacaoAgendamento = async (dados) => {
         
         <hr style="border: 1px solid #dee2e6;">
         <p style="color: #6c757d; font-size: 12px; text-align: center;">
-          Esta é uma notificação automática do sistema Wall Street Corporate
+          Esta é uma notificação automática do sistema Olinda Residence
         </p>
       </div>
     `

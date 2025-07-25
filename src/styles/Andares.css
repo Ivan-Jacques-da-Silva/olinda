@@ -167,18 +167,18 @@ html {
         flex: 0 0 10% !important;
         max-width: 10% !important;
     }
-    
+
     .col-salas {
         flex: 0 0 20% !important;
         max-width: 20% !important;
     }
-    
+
     .col-planta {
         flex: 0 0 35% !important;
         max-width: 35% !important;
         margin-top: 110px !important;
     }
-    
+
     .col-proposta {
         flex: 0 0 35% !important;
         max-width: 35% !important;
