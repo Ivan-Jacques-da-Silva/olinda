@@ -41,63 +41,48 @@ const Salas = ({
               const area = sala.atributos?.area?.[0]?.valor || '-';
               const posicao = sala.atributos?.posicao?.[0]?.valor || '';
               const preco = parseFloat(sala.precos?.de?.[0]?.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-              const imagem = sala.arquivos?.imagens?.[0]?.baixar;
               const disponivel = sala.atributos?.disponibilidade?.[0]?.valor;
 
               return (
-                <div
+                <motion.div
                   key={index}
-                  className={`rounded-4 p-2 mx-1 position-relative ${numero === salaSelecionada ? 'border-dark border-2' : 'border-secondary'}`}
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: 50, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className={`me-3 ${numero === salaSelecionada ? 'border-dark border-2' : 'border-secondary'}`}
                   style={{
+                    minWidth: '200px',
+                    maxWidth: '200px',
                     background: 'rgb(243 245 249)',
+                    borderRadius: '12px',
+                    padding: '15px',
                     cursor: 'pointer',
                     border: '1px solid #0046AD',
-                    width: '220px',
-                    flexShrink: 0
+                    position: 'relative',
+                    display: 'inline-block',
+                    height: '120px',
                   }}
                   onClick={() => {
                     setSalaSelecionada(numero);
                     setMostrarProposta(false);
                   }}
                 >
-                  <div className="position-relative">
-                    <img
-                      src={imagem ? `${Config.api_url}${imagem}` : '/placeholder-image.png'}
-                      alt={nome}
-                      className="w-100 rounded mb-2"
-                      style={{ width: '200px', objectFit: 'cover' }}
-                    />
+                  <div className="d-flex flex-column justify-content-between h-100 text-start">
+                    <div>
+                      <div className="fw-bold mb-1">{nome}</div>
+                      <div className="text-uppercase small text-muted mb-1">{posicao}</div>
+                      <div className="fw-medium mb-1">{area} m²</div>
+                      <div className="fw-bold">R$ {preco}</div>
+                    </div>
                     <i
                       className={`bi fs-5 ${disponivel ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger'}`}
-                      style={{ 
-                        position: 'absolute', 
-                        top: larguraTela >= 1200 ? '10px' : 'auto',
-                        bottom: larguraTela >= 1200 ? 'auto' : '-101px',
-                        right: '10px' 
-                      }}
+                      style={{ position: 'absolute', top: '8px', right: '8px' }}
                     />
                   </div>
-                  <div className="text-start">
-                    <div className="fw-bold">{nome}</div>
-                    <div className="text-uppercase small text-muted">{posicao}</div>
-                    <div className="fw-medium mt-1 mb-1">{area} m²</div>
-                    <div className="fw-bold mb-1">R$ {preco}</div>
-                    <hr className="my-2" />
-                  </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
-          <div className="d-flex justify-content-center mt-2">
-            {salas.map((_, i) => (
-              <div key={i} style={{
-                width: 8,
-                height: 8,
-                borderRadius: '50%',
-                backgroundColor: salaSelecionada === i + 1 ? '#0046AD' : '#ccc',
-                margin: '0px 4px'
-              }} />
-            ))}
           </div>
         </div>
       </>
@@ -114,7 +99,7 @@ const Salas = ({
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(365px, 1fr))',
+          gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '0.5rem',
           marginBottom: '10px',
           marginRight: '10px',
@@ -126,7 +111,6 @@ const Salas = ({
           const area = sala.atributos?.area?.[0]?.valor || '-';
           const posicao = sala.atributos?.posicao?.[0]?.valor || '';
           const preco = parseFloat(sala.precos?.de?.[0]?.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-          const imagem = sala.arquivos?.imagens?.[0]?.baixar;
           const disponivel = sala.atributos?.disponibilidade?.[0]?.valor;
 
           return (
@@ -151,12 +135,6 @@ const Salas = ({
                 }}
               >
                 <div className="d-flex align-items-center">
-                  <img
-                    src={imagem ? `${Config.api_url}${imagem}` : '/placeholder-image.png'}
-                    alt={nome}
-                    style={{ width: '180px', height: '120px', objectFit: 'cover', borderRadius: '6px', flexShrink: 0 }}
-                    className="me-3"
-                  />
                   <div className="flex-grow-1 text-start">
                     <div className="d-flex justify-content-between align-items-start">
                       <div>

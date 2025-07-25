@@ -128,6 +128,12 @@ app.post('/stripe/webhook', express.raw({ type: 'application/json' }), async (re
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// ========== DEBUG MIDDLEWARE ==========
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
+  next();
+});
+
 // ========== ROTAS ==========
 app.use('/stripe', stripeRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

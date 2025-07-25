@@ -7,9 +7,13 @@ const router = express.Router();
 // Login admin
 router.post('/admin/login', async (req, res) => {
   try {
+    console.log(`🔐 Tentativa de login recebida para usuário: ${req.body.usuario}`);
+    console.log(`🔐 IP: ${req.ip || req.connection.remoteAddress}`);
+    
     const { usuario, senha } = req.body;
 
     if (!usuario || !senha) {
+      console.log('❌ Dados incompletos no login');
       return res.status(400).json({ 
         sucesso: false, 
         mensagem: 'Usuário e senha são obrigatórios' 
@@ -18,8 +22,8 @@ router.post('/admin/login', async (req, res) => {
 
     // Definir usuários e suas permissões
     const usuarios = {
-      'Olinda': {
-        senha: 'Olinda@2025',
+      'olinda': {
+        senha: 'olinda@2025',
         token: 'admin-token-123',
         permissoes: ['formularios', 'agendamentos', 'salas', 'admin', 'historico']
       },
@@ -57,6 +61,15 @@ router.post('/admin/login', async (req, res) => {
       mensagem: 'Erro interno do servidor' 
     });
   }
+});
+
+// Rota de teste para verificar se o servidor está funcionando
+router.get('/test', (req, res) => {
+  res.json({ 
+    sucesso: true, 
+    mensagem: 'Servidor de autenticação funcionando!',
+    timestamp: new Date().toISOString()
+  });
 });
 
 module.exports = router;

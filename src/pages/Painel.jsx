@@ -74,14 +74,12 @@ const Painel = () => {
         setUsuario(nomeUsuario);
 
         // Definir aba padrão baseada no usuário
-        if (nomeUsuario === 'Olinda' && permissoesUsuario.includes('salas')) {
-            setActiveTab('salas');
-        } else if (nomeUsuario === 'corretor' && permissoesUsuario.includes('formularios')) {
-            setActiveTab('formularios');
+        if (nomeUsuario === 'corretor' && permissoesUsuario.includes('formularios')) {
+            setActiveTab('formularios'); // Corretor vai para propostas
+        } else if (permissoesUsuario.includes('salas')) {
+            setActiveTab('salas'); // Outros usuários vão para gerenciar salas
         } else if (permissoesUsuario.includes('formularios')) {
             setActiveTab('formularios');
-        } else if (permissoesUsuario.includes('salas')) {
-            setActiveTab('salas');
         }
 
         const token = localStorage.getItem("admin-token");
