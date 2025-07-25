@@ -273,7 +273,7 @@ const Painel = () => {
             // Edição - preservar ID original
             setSalaEdicao({
                 id: sala.id, // Garantir que o ID seja preservado
-                andar: parseInt(sala.andar) || 15,
+                andar: parseInt(sala.andar) || 5,
                 numero: sala.numero || "",
                 nome: sala.nome || "",
                 area: parseFloat(sala.area) || "",
@@ -297,7 +297,7 @@ const Painel = () => {
             // Nova sala
             setSalaEdicao({
                 id: null,
-                andar: 15,
+                andar: 5,
                 numero: "",
                 nome: "",
                 area: "",
@@ -1662,8 +1662,8 @@ const Painel = () => {
                                                         required
                                                     >
                                                         {Array.from(
-                                                            { length: 15 },
-                                                            (_, i) => 19 - i,
+                                                            { length: 12 },
+                                                            (_, i) => 5 + i,
                                                         ).map((andar) => (
                                                             <option
                                                                 key={andar}
@@ -1795,29 +1795,17 @@ const Painel = () => {
                                                         <option value="">
                                                             Selecione...
                                                         </option>
-                                                        <option value="FRENTE SUL">
-                                                            FRENTE SUL
+                                                        <option value="NOROESTE">
+                                                            NOROESTE
                                                         </option>
-                                                        <option value="LATERAL SUL">
-                                                            LATERAL SUL
+                                                        <option value="NORDESTE">
+                                                            NORDESTE
                                                         </option>
-                                                        <option value="LATERAL NORTE">
-                                                            LATERAL NORTE
+                                                        <option value="SUDESTE">
+                                                            SUDESTE
                                                         </option>
-                                                        <option value="FRENTE NORTE">
-                                                            FRENTE NORTE
-                                                        </option>
-                                                        <option value="LATERAL OESTE">
-                                                            LATERAL OESTE
-                                                        </option>
-                                                        <option value="FRENTE OESTE">
-                                                            FRENTE OESTE
-                                                        </option>
-                                                        <option value="LATERAL NORDESTE">
-                                                            LATERAL NORDESTE
-                                                        </option>
-                                                        <option value="FRENTE NORDESTE">
-                                                            FRENTE NORDESTE
+                                                        <option value="SUDOESTE">
+                                                            SUDOESTE
                                                         </option>
                                                     </Form.Select>
                                                 </FloatingLabel>
