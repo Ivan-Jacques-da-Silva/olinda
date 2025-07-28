@@ -6,7 +6,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 // Páginas
 import Home from './pages/Home.jsx';
-import Andares from './pages/Andares.jsx'; 
+import Andares from './pages/Andares.jsx';
 import Painel from './pages/Painel.jsx';
 // import Sobre from './pages/Sobre.jsx';
 // import Contato from './pages/Contato.jsx';
@@ -18,7 +18,9 @@ import CheckoutCancelado from './pages/CheckoutCancelado.jsx';
 
 function App() {
   return (
-    <Router>
+    // <Router>
+    <Router basename="/sistema">
+
       <div className="w-100" style={{ backgroundColor: '#135454' }}>
 
         <Routes>

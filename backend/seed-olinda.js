@@ -1,0 +1,659 @@
+
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+
+async function main() {
+  // Tipo 01 (109,00 m²) - Posição: Noroeste
+  await prisma.sala.create({
+    data: {
+      numero: "1601",
+      andar: 16,
+      nome: "Sala 1 - 1601",
+      area: 181.00,
+      posicao: "Noroeste",
+      preco: 2000000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-1601.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1501",
+      andar: 15,
+      nome: "Sala 1 - 1501",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 872000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-1501.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1401",
+      andar: 14,
+      nome: "Sala 1 - 1401",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 872000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-1401.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1301",
+      andar: 13,
+      nome: "Sala 1 - 1301",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 872000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-1301.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1201",
+      andar: 12,
+      nome: "Sala 1 - 1201",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 621300.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-1201.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1101",
+      andar: 11,
+      nome: "Sala 1 - 1101",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 621300.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-1101.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1001",
+      andar: 10,
+      nome: "Sala 1 - 1001",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 621300.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-1001.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "901",
+      andar: 9,
+      nome: "Sala 1 - 901",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 599000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-901.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "801",
+      andar: 8,
+      nome: "Sala 1 - 801",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 599000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-801.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "701",
+      andar: 7,
+      nome: "Sala 1 - 701",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 599000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-701.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "601",
+      andar: 6,
+      nome: "Sala 1 - 601",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 599000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-601.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "501",
+      andar: 5,
+      nome: "Sala 1 - 501",
+      area: 109.00,
+      posicao: "Noroeste",
+      preco: 599000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo1.png",
+      proposta_pdf: "uploads/proposta-501.pdf",
+    },
+  });
+
+  // Tipo 02 (107,50 m²) - Posição: Nordeste
+  await prisma.sala.create({
+    data: {
+      numero: "1602",
+      andar: 16,
+      nome: "Sala 2 - 1602",
+      area: 192.25,
+      posicao: "Nordeste",
+      preco: 2114750.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo2.png",
+      proposta_pdf: "uploads/proposta-1602.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1502",
+      andar: 15,
+      nome: "Sala 2 - 1502",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 860000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo2.png",
+      proposta_pdf: "uploads/proposta-1502.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1402",
+      andar: 14,
+      nome: "Sala 2 - 1402",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 860000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo2.png",
+      proposta_pdf: "uploads/proposta-1402.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1302",
+      andar: 13,
+      nome: "Sala 2 - 1302",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 0.00,
+      disponivel: false,
+      planta: "seedPlanta/plantatipo2.png",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1202",
+      andar: 12,
+      nome: "Sala 2 - 1202",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 0.00,
+      disponivel: false,
+      planta: "seedPlanta/plantatipo2.png",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1102",
+      andar: 11,
+      nome: "Sala 2 - 1102",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 0.00,
+      disponivel: false,
+      planta: "seedPlanta/plantatipo2.png",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1002",
+      andar: 10,
+      nome: "Sala 2 - 1002",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 0.00,
+      disponivel: false,
+      planta: "seedPlanta/plantatipo2.png",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "902",
+      andar: 9,
+      nome: "Sala 2 - 902",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 599000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo2.png",
+      proposta_pdf: "uploads/proposta-902.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "802",
+      andar: 8,
+      nome: "Sala 2 - 802",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 599000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo2.png",
+      proposta_pdf: "uploads/proposta-802.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "702",
+      andar: 7,
+      nome: "Sala 2 - 702",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 599000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo2.png",
+      proposta_pdf: "uploads/proposta-702.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "602",
+      andar: 6,
+      nome: "Sala 2 - 602",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 599000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo2.png",
+      proposta_pdf: "uploads/proposta-602.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "502",
+      andar: 5,
+      nome: "Sala 2 - 502",
+      area: 107.50,
+      posicao: "Nordeste",
+      preco: 599000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo2.png",
+      proposta_pdf: "uploads/proposta-502.pdf",
+    },
+  });
+
+  // Tipo 03 (78,50 m²) - Posição: Sudeste
+  await prisma.sala.create({
+    data: {
+      numero: "1503",
+      andar: 15,
+      nome: "Sala 3 - 1503",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 628000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo3.png",
+      proposta_pdf: "uploads/proposta-1503.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1403",
+      andar: 14,
+      nome: "Sala 3 - 1403",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 628000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo3.png",
+      proposta_pdf: "uploads/proposta-1403.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1303",
+      andar: 13,
+      nome: "Sala 3 - 1303",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 628000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo3.png",
+      proposta_pdf: "uploads/proposta-1303.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1203",
+      andar: 12,
+      nome: "Sala 3 - 1203",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 0.00,
+      disponivel: false,
+      planta: "seedPlanta/plantatipo3.png",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1103",
+      andar: 11,
+      nome: "Sala 3 - 1103",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 447450.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo3.png",
+      proposta_pdf: "uploads/proposta-1103.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1003",
+      andar: 10,
+      nome: "Sala 3 - 1003",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 447450.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo3.png",
+      proposta_pdf: "uploads/proposta-1003.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "903",
+      andar: 9,
+      nome: "Sala 3 - 903",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 433000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo3.png",
+      proposta_pdf: "uploads/proposta-903.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "803",
+      andar: 8,
+      nome: "Sala 3 - 803",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 433000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo3.png",
+      proposta_pdf: "uploads/proposta-803.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "703",
+      andar: 7,
+      nome: "Sala 3 - 703",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 433000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo3.png",
+      proposta_pdf: "uploads/proposta-703.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "603",
+      andar: 6,
+      nome: "Sala 3 - 603",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 433000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo3.png",
+      proposta_pdf: "uploads/proposta-603.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "503",
+      andar: 5,
+      nome: "Sala 3 - 503",
+      area: 78.50,
+      posicao: "Sudeste",
+      preco: 433000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo3.png",
+      proposta_pdf: "uploads/proposta-503.pdf",
+    },
+  });
+
+  // Tipo 04 (73,50 m²) - Posição: Sudoeste
+  await prisma.sala.create({
+    data: {
+      numero: "1504",
+      andar: 15,
+      nome: "Sala 4 - 1504",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 588000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-1504.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1404",
+      andar: 14,
+      nome: "Sala 4 - 1404",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 588000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-1404.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1304",
+      andar: 13,
+      nome: "Sala 4 - 1304",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 588000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-1304.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1204",
+      andar: 12,
+      nome: "Sala 4 - 1204",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 418950.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-1204.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1104",
+      andar: 11,
+      nome: "Sala 4 - 1104",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 418950.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-1104.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "1004",
+      andar: 10,
+      nome: "Sala 4 - 1004",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 418950.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-1004.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "904",
+      andar: 9,
+      nome: "Sala 4 - 904",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 399000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-904.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "804",
+      andar: 8,
+      nome: "Sala 4 - 804",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 399000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-804.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "704",
+      andar: 7,
+      nome: "Sala 4 - 704",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 399000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-704.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "604",
+      andar: 6,
+      nome: "Sala 4 - 604",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 399000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-604.pdf",
+    },
+  });
+
+  await prisma.sala.create({
+    data: {
+      numero: "504",
+      andar: 5,
+      nome: "Sala 4 - 504",
+      area: 73.50,
+      posicao: "Sudoeste",
+      preco: 399000.00,
+      disponivel: true,
+      planta: "seedPlanta/plantatipo4.png",
+      proposta_pdf: "uploads/proposta-504.pdf",
+    },
+  });
+
+  console.log("✅ Todas as salas foram criadas com os novos dados!");
+}
+
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

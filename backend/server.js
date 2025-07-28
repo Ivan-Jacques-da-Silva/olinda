@@ -13,7 +13,8 @@ const { stripe, STRIPE_CONFIG } = require('./stripe/config');
 const { processWebhookEvent } = require('./stripe/webhook');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5055;
 
 // ========== LOG INICIAL ==========
 console.log('🔐 ========== VERIFICAÇÃO INICIAL DO .ENV ==========');
@@ -88,7 +89,8 @@ app.use(cors({
   origin: [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
-    'https://front.wallstreetnr.com.br'
+    'https://olindaresidence.com.br/sistema',
+    'https://olindaresidence.com.br'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],

@@ -201,7 +201,7 @@ const Andares = () => {
                                 {/* <a href="#" className="ws-nav-link mx-3">CONTATO</a> */}
                                 <Button
                                     as="a"
-                                    href="https://front.wallstreetnr.com.br/folder-wall-street-corporate.pdf"
+                                    href="https://olindaresidence.com.br/sistema/folder-wall-street-corporate.pdf"
                                     download
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -281,7 +281,7 @@ const Andares = () => {
                 </Container>
             </header>
 
-            <Container fluid className="mt-4">
+            <Container fluid className="mt-4 p-1">
                 <Row className={larguraTela < 1199 ? "" : "flex-nowrap"}>
                     {/* Coluna dos Andares - Desktop: 2 colunas */}
                     <Col xs={12} md={2} xl={2} className="px-2 col-andares">
@@ -324,7 +324,7 @@ const Andares = () => {
                     </Col>
 
                     {/* Coluna do Conteúdo - Desktop: Salas, Planta e Proposta empilhados */}
-                    <Col xs={12} md={10} xl={10} className="px-0">
+                    <Col xs={12} md={12} xl={10} className="px-0">
                         <div className="border border-success rounded p-2">
                             {/* Seção das Salas */}
                             <div className="mb-4 col-salas">
@@ -372,326 +372,320 @@ const Andares = () => {
                                 />
                             </div>
 
-                            {/* Seção da Planta */}
-                            <div className="mb-4 col-planta">
-                                <AnimatePresence mode="wait">
-                                    <motion.div
-                                        key="planta"
-                                        initial={{ opacity: 0, y: 30 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -30 }}
-                                        transition={{ duration: 0.4 }}
-                                        className="d-flex align-items-start justify-content-center"
-                                        style={{
-                                            width: "100%",
-                                            height: "auto",
-                                            overflowY: "auto",
-                                            zIndex: 1,
-                                        }}
-                                    >
-                                        {salaAtual?.arquivos?.plantas?.[0]
-                                            ?.baixar ? (
-                                            <img
-                                                src={
-                                                    salaAtual?.arquivos
-                                                        ?.plantas?.[0]?.baixar
-                                                        ? `${Config.api_url}${salaAtual.arquivos.plantas[0].baixar}`
-                                                        : ""
-                                                }
-                                                alt={`Planta da Sala ${salaSelecionada}`}
-                                                className="img-fluid justify-content-center px-3 planta-img"
-                                                style={{ height: "auto" }}
-                                                onError={(e) =>
+                            {/* Container para Planta e Proposta lado a lado em telas grandes */}
+                            <div className={larguraTela >= 1199 ? "planta-proposta-container" : ""}>
+                                {/* Seção da Planta */}
+                                <div className={larguraTela >= 1199 ? "col-planta" : "mb-4 col-planta"}>
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key="planta"
+                                            initial={{ opacity: 0, y: 30 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -30 }}
+                                            transition={{ duration: 0.4 }}
+                                            className="d-flex align-items-start justify-content-center"
+                                            style={{
+                                                width: "100%",
+                                                height: "auto",
+                                                overflowY: "auto",
+                                                zIndex: 1,
+                                            }}
+                                        >
+                                            {salaAtual?.arquivos?.plantas?.[0]
+                                                ?.baixar ? (
+                                                <img
+                                                    src={
+                                                        salaAtual?.arquivos
+                                                            ?.plantas?.[0]?.baixar
+                                                            ? `${Config.api_url}${salaAtual.arquivos.plantas[0].baixar}`
+                                                            : ""
+                                                    }
+                                                    alt={`Planta da Sala ${salaSelecionada}`}
+                                                    className="img-fluid justify-content-center px-3 planta-img"
+                                                    style={{ height: "auto" }}
+                                                    onError={(e) =>
                                                     (e.target.style.display =
                                                         "none")
-                                                }
-                                            />
-                                        ) : (
-                                            <div
-                                                className="d-flex justify-content-center align-items-center"
-                                                style={{ height: "200px" }}
-                                            >
-                                                <div
-                                                    className="spinner-border text-primary"
-                                                    role="status"
+                                                    }
                                                 />
-                                            </div>
-                                        )}
-                                    </motion.div>
-                                </AnimatePresence>
-                            </div>
+                                            ) : (
+                                                <div
+                                                    className="d-flex justify-content-center align-items-center"
+                                                    style={{ height: "200px" }}
+                                                >
+                                                    <div
+                                                        className="spinner-border text-primary"
+                                                        role="status"
+                                                    />
+                                                </div>
+                                            )}
+                                        </motion.div>
+                                    </AnimatePresence>
+                                </div>
 
-                            {/* Seção da Proposta */}
-                            <div className="col-proposta">
-                                <div
-                                    className="d-flex flex-column bg-light p-4 rounded"
-                                    style={{ overflowY: "auto" }}
-                                >
-                                    <motion.div
-                                        initial={{ y: "100%" }}
-                                        animate={{ y: 0 }}
-                                        exit={{ y: "100%" }}
-                                        transition={{ duration: 0.4 }}
+                                {/* Seção da Proposta */}
+                                <div className="col-proposta">
+                                    <div
+                                        className="d-flex flex-column bg-light p-4 rounded"
+                                        style={{ overflowY: "auto" }}
                                     >
-                                        <h4 className="fw-bold text-center mb-4">
-                                            PROPOSTA ABAIXO
-                                        </h4>
-                                        <div className="bg-dark text-white p-3 rounded text-center mb-3">
-                                            <div className="fw-bold fs-5">
-                                                OLINDA RESIDENCE
+                                        <motion.div
+                                            initial={{ y: "100%" }}
+                                            animate={{ y: 0 }}
+                                            exit={{ y: "100%" }}
+                                            transition={{ duration: 0.4 }}
+                                        >
+                                            <h4 className="fw-bold text-center mb-4">
+                                                PROPOSTA ABAIXO
+                                            </h4>
+                                            <div className="bg-dark text-white p-3 rounded text-center mb-3">
+                                                <div className="fw-bold fs-5">
+                                                    OLINDA RESIDENCE
+                                                </div>
+                                                <div className="fw-bold text-white mt-2">
+                                                    {salaAtual?.atributos?.nome?.[0]
+                                                        ?.valor
+                                                        ? `Sala Comercial ${salaAtual.atributos.nome[0].valor}`
+                                                        : "Selecione uma sala"}
+                                                </div>
+                                                <div>
+                                                    {salaAtual?.atributos?.area?.[0]
+                                                        ?.valor
+                                                        ? `${salaAtual.atributos.area[0].valor}m² de área privativa`
+                                                        : "Área: -- m²"}
+                                                </div>
                                             </div>
-                                            <div className="fw-bold text-white mt-2">
-                                                {salaAtual?.atributos?.nome?.[0]
-                                                    ?.valor
-                                                    ? `Sala Comercial ${salaAtual.atributos.nome[0].valor}`
-                                                    : "Selecione uma sala"}
-                                            </div>
-                                            <div>
-                                                {salaAtual?.atributos?.area?.[0]
-                                                    ?.valor
-                                                    ? `${salaAtual.atributos.area[0].valor}m² de área privativa`
-                                                    : "Área: -- m²"}
-                                            </div>
-                                        </div>
-                                        <table className="table table-sm mb-3">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Valor da Sala</td>
-                                                    <td className="text-end">
-                                                        R${" "}
-                                                        {valorSala.toLocaleString(
-                                                            "pt-BR",
-                                                            {
+                                            <table className="table table-sm mb-3">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Valor da Sala</td>
+                                                        <td className="text-end">
+                                                            R${" "}
+                                                            {valorSala.toLocaleString(
+                                                                "pt-BR",
+                                                                {
+                                                                    minimumFractionDigits: 2,
+                                                                },
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                    {/* <tr>
+                                                        <td>01 Vaga de garagem</td>
+                                                        <td className="text-end">
+                                                            R$ 60.000,00
+                                                        </td>
+                                                    </tr>
+                                                    <tr className="fw-bold">
+                                                        <td>Valor Total</td>
+                                                        <td className="text-end">
+                                                            R${" "}
+                                                            {valorTotalSemDesconto.toLocaleString(
+                                                                "pt-BR",
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Desconto aplicado</td>
+                                                        <td className="text-end text-success">
+                                                            - R${" "}
+                                                            {descontoFixo.toLocaleString(
+                                                                "pt-BR",
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                    <tr className="fw-bold">
+                                                        <td>Valor Final</td>
+                                                        <td className="text-end">
+                                                            R${" "}
+                                                            {valorTotal.toLocaleString(
+                                                                "pt-BR",
+                                                            )}
+                                                        </td>
+                                                    </tr> */}
+                                                </tbody>
+                                            </table>
+                                            <h6 className="fw-bold text-center">
+                                                Forma de Pagamento Sugerida
+                                            </h6>
+                                            <table className="table table-sm">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Entrada</td>
+                                                        <td className="text-end">
+                                                            R${" "}
+                                                            {entrada.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dezembro 2025**</td>
+                                                        <td className="text-end">
+                                                            R${" "}
+                                                            {reforco2025.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dezembro 2026**</td>
+                                                        <td className="text-end">
+                                                            R${" "}
+                                                            {reforco2026.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dezembro 2027(Entrega)**</td>
+                                                        <td className="text-end">
+                                                            R${" "}
+                                                            {reforco2027.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                        </td>
+                                                    </tr>
+                                                    {/* <tr><td>Valor Parcelamento</td><td className="text-end">R$ {valorParcelamento.toLocaleString('pt-BR')}</td></tr> */}
+                                                    <tr>
+                                                        <td>55x**</td>
+                                                        <td className="text-end">
+                                                            R${" "}
+                                                            {parcelaCub.toLocaleString(
+                                                                "pt-BR",
+                                                                {
+                                                                    minimumFractionDigits: 2,
+                                                                    maximumFractionDigits: 2,
+                                                                },
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                    <tr className="fw-bold">
+                                                        <td>Total</td>
+                                                        <td className="text-end">
+                                                            R${" "}
+                                                            {valorTotal.toLocaleString(
+                                                                "pt-BR",
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            {/* <h5 className="text-center fw-bold mt-4 mb-3">
+                                                VALORIZAÇÃO ESTIMADA
+                                            </h5> */}
+                                            {/* <table className="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Valorização até Entrega*</td>
+                                                        <td className="fw-bold text-end">
+                                                            R${" "}
+                                                            {valorizacaoEntrega.toLocaleString(
+                                                                "pt-BR",
+                                                                {
+                                                                    minimumFractionDigits: 2,
+                                                                },
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Rendimento obtido (Lucro)*</td>
+                                                        <td className="fw-bold text-end">
+                                                            R${" "}
+                                                            {lucro.toLocaleString(
+                                                                "pt-BR",
+                                                                {
+                                                                    minimumFractionDigits: 2,
+                                                                },
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Valor do Aluguel*</td>
+                                                        <td className="text-end">
+                                                            R${" "}
+                                                            {(
+                                                                valorTotalSemDesconto *
+                                                                0.0095
+                                                            ).toLocaleString("pt-BR", {
                                                                 minimumFractionDigits: 2,
-                                                            },
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>01 Vaga de garagem</td>
-                                                    <td className="text-end">
-                                                        R$ 60.000,00
-                                                    </td>
-                                                </tr>
-                                                <tr className="fw-bold">
-                                                    <td>Valor Total</td>
-                                                    <td className="text-end">
-                                                        R${" "}
-                                                        {valorTotalSemDesconto.toLocaleString(
-                                                            "pt-BR",
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Desconto aplicado</td>
-                                                    <td className="text-end text-success">
-                                                        - R${" "}
-                                                        {descontoFixo.toLocaleString(
-                                                            "pt-BR",
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                                <tr className="fw-bold">
-                                                    <td>Valor Final</td>
-                                                    <td className="text-end">
-                                                        R${" "}
-                                                        {valorTotal.toLocaleString(
-                                                            "pt-BR",
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <h6 className="fw-bold text-center">
-                                            Forma de Pagamento Sugerida
-                                        </h6>
-                                        <table className="table table-sm">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Entrada</td>
-                                                    <td className="text-end">
-                                                        R${" "}
-                                                        {entrada.toLocaleString(
-                                                            "pt-BR",
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Dezembro 2025**</td>
-                                                    <td className="text-end">
-                                                        R${" "}
-                                                        {reforco2025.toLocaleString(
-                                                            "pt-BR",
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Dezembro 2026**</td>
-                                                    <td className="text-end">
-                                                        R${" "}
-                                                        {reforco2026.toLocaleString(
-                                                            "pt-BR",
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Dezembro 2027(Entrega)**</td>
-                                                    <td className="text-end">
-                                                        R${" "}
-                                                        {reforco2027.toLocaleString(
-                                                            "pt-BR",
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                                {/* <tr><td>Valor Parcelamento</td><td className="text-end">R$ {valorParcelamento.toLocaleString('pt-BR')}</td></tr> */}
-                                                <tr>
-                                                    <td>55x**</td>
-                                                    <td className="text-end">
-                                                        R${" "}
-                                                        {parcelaCub.toLocaleString(
-                                                            "pt-BR",
-                                                            {
-                                                                minimumFractionDigits: 2,
-                                                                maximumFractionDigits: 2,
-                                                            },
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                                <tr className="fw-bold">
-                                                    <td>Total</td>
-                                                    <td className="text-end">
-                                                        R${" "}
-                                                        {valorTotal.toLocaleString(
-                                                            "pt-BR",
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <h5 className="text-center fw-bold mt-4 mb-3">
-                                            VALORIZAÇÃO ESTIMADA
-                                        </h5>
-                                        <table className="table table-bordered">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Valorização até Entrega*</td>
-                                                    <td className="fw-bold text-end">
-                                                        R${" "}
-                                                        {valorizacaoEntrega.toLocaleString(
-                                                            "pt-BR",
-                                                            {
-                                                                minimumFractionDigits: 2,
-                                                            },
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rendimento obtido (Lucro)*</td>
-                                                    <td className="fw-bold text-end">
-                                                        R${" "}
-                                                        {lucro.toLocaleString(
-                                                            "pt-BR",
-                                                            {
-                                                                minimumFractionDigits: 2,
-                                                            },
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Valor do Aluguel*</td>
-                                                    <td className="text-end">
-                                                        R${" "}
-                                                        {(
-                                                            valorTotalSemDesconto *
-                                                            0.0095
-                                                        ).toLocaleString("pt-BR", {
-                                                            minimumFractionDigits: 2,
-                                                        })}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Valor Condomínio*</td>
-                                                    <td className="text-end">
-                                                        R$ 800,00
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Valor IPTU* (12x)</td>
-                                                    <td className="text-end">
-                                                        R$ 166,67
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <p className="small text-center text-muted mb-0">
-                                            *Valores aproximados do mercado atual.
-                                        </p>
-                                        <p className="small text-center text-muted mb-0">
-                                            **Atualizado via cub e após a entrega da
-                                            obra o índice de reajuste é outro, confira
-                                            direto conosco.
-                                        </p>
+                                                            })}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Valor Condomínio*</td>
+                                                        <td className="text-end">
+                                                            R$ 800,00
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Valor IPTU* (12x)</td>
+                                                        <td className="text-end">
+                                                            R$ 166,67
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> */}
+                                            <p className="small text-center text-muted mb-0">
+                                                *Valores aproximados do mercado atual.
+                                            </p>
+                                            <p className="small text-center text-muted mb-0">
+                                                **Atualizado via cub e após a entrega da
+                                                obra o índice de reajuste é outro, confira
+                                                direto conosco.
+                                            </p>
 
-                                        <div className="d-flex flex-column gap-2 mt-4">
-                                            <FormularioData
-                                                codigo="wall_street_pre_reserva"
-                                                salaAtual={salaAtual}
-                                                onPagamento={handlePagamento}
-                                                isSubmittingPayment={isSubmitting}
-                                            />
-                                            <FormularioData
-                                                codigo="wall_street_contraproposta"
-                                            />
-                                            <FormularioData
-                                                codigo="wall_street_agendar_reuniao"
-                                            />
+                                            <div className="d-flex flex-column gap-2 mt-4">
+                                                <FormularioData
+                                                    codigo="wall_street_pre_reserva"
+                                                    salaAtual={salaAtual}
+                                                    onPagamento={handlePagamento}
+                                                    isSubmittingPayment={isSubmitting}
+                                                />
+                                                <FormularioData
+                                                    codigo="wall_street_contraproposta"
+                                                />
+                                                <FormularioData
+                                                    codigo="wall_street_agendar_reuniao"
+                                                />
 
-                                            {salaAtual?.arquivos?.proposta_pdf?.[0]
-                                                ?.baixar &&
-                                                salaAtual?.atributos
-                                                    ?.disponibilidade?.[0]
-                                                    ?.valor && (
-                                                    <Button
-                                                        onClick={async () => {
-                                                            const url = `${Config.api_url}${salaAtual.arquivos.proposta_pdf[0].baixar}`;
-                                                            const response =
-                                                                await fetch(url);
-                                                            const blob =
-                                                                await response.blob();
+                                                {salaAtual?.arquivos?.proposta_pdf?.[0]
+                                                    ?.baixar &&
+                                                    salaAtual?.atributos
+                                                        ?.disponibilidade?.[0]
+                                                        ?.valor && (
+                                                        <Button
+                                                            onClick={async () => {
+                                                                const url = `${Config.api_url}${salaAtual.arquivos.proposta_pdf[0].baixar}`;
+                                                                const response =
+                                                                    await fetch(url);
+                                                                const blob =
+                                                                    await response.blob();
 
-                                                            const link =
-                                                                document.createElement(
-                                                                    "a",
-                                                                );
-                                                            link.href =
-                                                                URL.createObjectURL(
-                                                                    blob,
-                                                                );
-                                                            link.download = `proposta-${
-                                                                salaAtual
+                                                                const link =
+                                                                    document.createElement(
+                                                                        "a",
+                                                                    );
+                                                                link.href =
+                                                                    URL.createObjectURL(
+                                                                        blob,
+                                                                    );
+                                                                link.download = `proposta-${salaAtual
                                                                     ?.atributos
                                                                     ?.nome?.[0]
                                                                     ?.valor ||
-                                                                "sala"
-                                                            }.pdf`;
-                                                            document.body.appendChild(
-                                                                link,
-                                                            );
-                                                            link.click();
-                                                            document.body.removeChild(
-                                                                link,
-                                                            );
-                                                            URL.revokeObjectURL(
-                                                                link.href,
-                                                            );
-                                                        }}
-                                                        className="fw-bold text-dark btn-warning"
-                                                    >
-                                                        BAIXAR PROPOSTA
-                                                    </Button>
-                                                )}
-                                        </div>
-                                    </motion.div>
+                                                                    "sala"
+                                                                    }.pdf`;
+                                                                document.body.appendChild(
+                                                                    link,
+                                                                );
+                                                                link.click();
+                                                                document.body.removeChild(
+                                                                    link,
+                                                                );
+                                                                URL.revokeObjectURL(
+                                                                    link.href,
+                                                                );
+                                                            }}
+                                                            className="fw-bold text-dark btn-warning"
+                                                        >
+                                                            BAIXAR PROPOSTA
+                                                        </Button>
+                                                    )}
+                                            </div>
+                                        </motion.div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

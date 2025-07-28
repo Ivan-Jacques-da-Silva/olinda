@@ -139,7 +139,7 @@ function Sessao2() {
 
 
           <a
-            href="https://front.wallstreetnr.com.br/proposta-wall-street.pdf"
+            href="https://olindaresidence.com.br/sistema/proposta-wall-street.pdf"
             download
             target="_blank"
             rel="noopener noreferrer"

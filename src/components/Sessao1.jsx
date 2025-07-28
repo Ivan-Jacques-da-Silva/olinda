@@ -8,19 +8,20 @@ import "./sessoes.css";
 
 function Sessao1() {
   const posicoesAndares = [
-    { andar: 16, top: 70 },
-    { andar: 15, top: 95 },
-    { andar: 14, top: 120 },
-    { andar: 13, top: 146 },
-    { andar: 12, top: 173 },
-    { andar: 11, top: 201 },
-    { andar: 10, top: 230 },
-    { andar: 9, top: 260 },
-    { andar: 8, top: 288 },
-    { andar: 7, top: 319 },
-    { andar: 6, top: 350 },
-    { andar: 5, top: 384 },
-  ];
+    { andar: 16, top: 98 },
+    { andar: 15, top: 129 },
+    { andar: 14, top: 161 },
+    { andar: 13, top: 192 },
+    { andar: 12, top: 224 },
+    { andar: 11, top: 254 },
+    { andar: 10, top: 285 },
+    { andar: 9, top: 317 },
+    { andar: 8, top: 348 },
+    { andar: 7, top: 379 },
+    { andar: 6, top: 410 },
+    { andar: 5, top: 441 },
+  ]
+    ;
 
   return (
     <section
@@ -101,7 +102,7 @@ function Sessao1() {
             <div className="d-flex flex-column align-items-center mt-md-5 mt-3">
               <Button
                 as="a"
-                href="/andares?andar=16"
+                href="/sistema/andares?andar=16"
                 style={{
                   backgroundColor: "#fff",
                   border: "none",
@@ -116,7 +117,7 @@ function Sessao1() {
 
               <Button
                 as="a"
-                href="https://front.wallstreetnr.com.br/folder-wall-street-corporate.pdf"
+                href="https://olindaresidence.com.br/folder-wall-street-corporate.pdf"
                 download
                 target="_blank"
                 rel="noopener noreferrer"
@@ -165,7 +166,7 @@ function Sessao1() {
                       className="botao-andar"
                       title={`${andar}º Andar`}
                       onClick={() =>
-                        (window.location.href = `/andares?andar=${andar}`)
+                        (window.location.href = `/sistema/andares?andar=${andar}`)
                       }
                     >
                       <img
@@ -211,14 +212,14 @@ function Sessao1() {
                     }}
                   >
                     {andar}º Andar
-                    {andar === 5 ? (
+                    {andar === 16 && " - Cobertura"}
+                    {andar === 5 && (
                       <>
                         <br />
                         Pavimento <br /> Prime
                       </>
-                    ) : (
-                      ""
                     )}
+
                   </div>
                 </React.Fragment>
               ))}

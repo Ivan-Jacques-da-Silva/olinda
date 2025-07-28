@@ -4,7 +4,7 @@ const { processWebhookEvent } = require('./webhook');
 
 const router = express.Router();
 
-// Webhook endpoint para PRODUÇÃO - https://api.wallstreetnr.com.br/stripe/webhook
+// Webhook endpoint para PRODUÇÃO - https://api.olindaresidence.com.br/stripe/webhook
 router.post('/webhook', async (req, res) => {
   const sig = req.headers['stripe-signature'];
   let event;
@@ -67,7 +67,7 @@ router.post('/webhook', async (req, res) => {
   }
 });
 
-// Webhook endpoint para TESTE - https://api.wallstreetnr.com.br/stripe/webhook/teste
+// Webhook endpoint para TESTE - https://api.olindaresidence.com.br/stripe/webhook/teste
 router.post('/webhook/teste', async (req, res) => {
   const sig = req.headers['stripe-signature'];
   let event;
@@ -187,7 +187,7 @@ router.post('/create-checkout-session', async (req, res) => {
     }
 
     // Usar a URL correta do frontend em produção
-    const baseUrl = req.headers.origin || 'https://front.wallstreetnr.com.br';
+    const baseUrl = req.headers.origin || 'https://olindaresidence.com.br/sistema';
 
     let sessionData = {
       payment_method_types: ['card'],

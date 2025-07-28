@@ -1795,17 +1795,17 @@ const Painel = () => {
                                                         <option value="">
                                                             Selecione...
                                                         </option>
-                                                        <option value="NOROESTE">
-                                                            NOROESTE
+                                                        <option value="Noroeste">
+                                                            Noroeste
                                                         </option>
-                                                        <option value="NORDESTE">
-                                                            NORDESTE
+                                                        <option value="Nordeste">
+                                                            Nordeste
                                                         </option>
-                                                        <option value="SUDESTE">
-                                                            SUDESTE
+                                                        <option value="Sudeste">
+                                                            Sudeste
                                                         </option>
-                                                        <option value="SUDOESTE">
-                                                            SUDOESTE
+                                                        <option value="Sudoeste">
+                                                            Sudoeste
                                                         </option>
                                                     </Form.Select>
                                                 </FloatingLabel>

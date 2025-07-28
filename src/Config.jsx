@@ -1,5 +1,5 @@
 // const api_url = 'http://localhost:5000'
-const api_url = 'https://api.wallstreetnr.com.br'
+const api_url = 'https://api.olindaresidence.com.br'
 
 if (!sessionStorage.getItem('csrfToken')) {
     fetch(`${api_url}/api/csrf-token/`).then(async response => {
@@ -15,8 +15,8 @@ export default class {
 
     static get api_url() {
         return window.location.hostname === 'localhost'
-            ? 'http://localhost:5000'
-            : 'https://api.wallstreetnr.com.br';
+            ? 'http://localhost:5055'
+            : 'https://api.olindaresidence.com.br';
     }
 
     static get csrf_Token() {

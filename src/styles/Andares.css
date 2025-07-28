@@ -112,6 +112,18 @@ html {
         flex: 0 0 100%;
         max-width: 100%;
     }
+
+    /* Remove container flex para mobile */
+    .planta-proposta-container {
+        display: block !important;
+    }
+
+    /* Remove bordas e margens em mobile */
+    .border-success.rounded.p-2 {
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 }
 
 .container-fluid {
@@ -130,8 +142,22 @@ html {
 
     .col-planta,
     .col-proposta {
-        flex: 0 0 50%;
-        max-width: 50%;
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Remove container flex para telas menores */
+    .planta-proposta-container {
+        display: block !important;
+    }
+
+    /* Remove bordas e margens em tablets */
+    .border-success.rounded.p-2 {
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 }
 
@@ -143,7 +169,7 @@ html {
     }
 }
 
-@media (min-width: 1199px) {
+@media (min-width: 1199px) and (max-width: 1998px) {
     .col-andares {
         flex: 0 0 16.666667%;
         max-width: 16.666667%;
@@ -155,25 +181,105 @@ html {
         height: auto;
     }
 
-    /* Layout vertical para desktop - empilhamento das seções */
+    /* Layout para desktop - salas em linha inteira, planta e proposta lado a lado */
     .col-salas {
         margin-bottom: 30px;
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-right: 0;
+        padding-left: 0;
     }
 
     .col-planta {
-        margin-bottom: 30px;
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
     }
 
     .col-proposta {
-        /* Sem margem superior já que será a última seção */
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
     }
 
-    /* Card styling with padding and margin */
+    /* Container para planta e proposta lado a lado */
+    .planta-proposta-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* Remove qualquer espaçamento dos containers principais */
+    .container-fluid {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Card styling without borders and margins for desktop */
     .border-success.rounded.p-2 {
-        margin-left: 15px;
-        margin-right: 40px;
-        padding-left: 50px !important;
-        padding-right: 50px !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+@media (min-width: 1999px) {
+    .col-andares {
+        flex: 0 0 16.666667%;
+        max-width: 16.666667%;
+    }
+
+    .planta-img {
+        width: 100%;
+        max-width: none;
+        height: auto;
+    }
+
+    /* Layout para desktop - salas em linha inteira, planta e proposta lado a lado */
+    .col-salas {
+        margin-bottom: 30px;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .col-planta {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+    }
+
+    .col-proposta {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+    }
+
+    /* Container para planta e proposta lado a lado */
+    .planta-proposta-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* Card styling without borders and margins for desktop */
+    .border-success.rounded.p-2 {
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 }
 
