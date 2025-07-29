@@ -1,6 +1,6 @@
 # Olinda Residence - Frontend
 
-Interface visual para gerenciamento e visualização de salas comerciais do empreendimento **Olinda Residence**.
+Interface visual para gerenciamento e visualização de Apartamentos do empreendimento **Olinda Residence**.
 
 ## 🚀 Tecnologias
 
@@ -11,7 +11,7 @@ Interface visual para gerenciamento e visualização de salas comerciais do empr
 
 ## ⚙️ Funcionalidades
 
-- Escolha de andar e visualização das salas
+- Escolha de andar e visualização dos Apartamentos
 - Planta baixa interativa
 - Simulação de proposta com valorização
 - Layout responsivo e imersivo

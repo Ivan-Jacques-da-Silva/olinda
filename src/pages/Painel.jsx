@@ -865,7 +865,7 @@ const Painel = () => {
                             title={
                                 <span className="d-flex align-items-center px-3 py-2">
                                     <Building className="me-2" size={16} />
-                                    Gerenciar Salas
+                                    Gerenciar AP
                                 </span>
                             }
                         >
@@ -875,7 +875,7 @@ const Painel = () => {
                                         <div className="mb-3 mb-lg-0">
                                             <h4 className="mb-1 d-flex align-items-center">
                                                 <Building className="me-2" />
-                                                Salas Cadastradas
+                                                AP Cadastrados
                                             </h4>
                                             <p className="text-muted mb-0">
                                                 <Badge
@@ -884,7 +884,7 @@ const Painel = () => {
                                                 >
                                                     {salasFiltradas.length}
                                                 </Badge>
-                                                salas encontradas
+                                                AP encontrados
                                             </p>
                                         </div>
                                         <Button
@@ -898,7 +898,7 @@ const Painel = () => {
                                             }}
                                         >
                                             <Plus size={16} className="me-2" />
-                                            Nova Sala
+                                            Novo Apartamento
                                         </Button>
                                     </div>
 
@@ -937,7 +937,7 @@ const Painel = () => {
                                                     className="border-start-0"
                                                 >
                                                     <option value="todos">
-                                                        Todas as salas
+                                                        Todos os AP
                                                     </option>
                                                     <option value="disponivel">
                                                         Apenas disponíveis
@@ -1620,7 +1620,7 @@ const Painel = () => {
                         ) : (
                             <Plus className="me-2" />
                         )}
-                        {salaEdicao?.id ? "Editar Sala" : "Nova Sala"}
+                        {salaEdicao?.id ? "Editar AP" : "Novo AP"}
                     </Modal.Title>
                 </Modal.Header>
                 <Form onSubmit={salvarSala}>
@@ -2041,7 +2041,7 @@ const Painel = () => {
                                                 size={16}
                                                 className="me-2"
                                             />
-                                            ARQUIVOS DA SALA
+                                            ARQUIVOS DO AP
                                         </h6>
                                     </Card.Header>
                                     <Card.Body>
@@ -2052,7 +2052,7 @@ const Painel = () => {
                                                         size={18}
                                                         className="me-2 text-primary"
                                                     />
-                                                    Imagem da Sala
+                                                    Imagem do AP
                                                 </label>
                                                 <input
                                                     ref={imagemInputRef}
@@ -2076,7 +2076,7 @@ const Painel = () => {
                                                         size={18}
                                                         className="me-2 text-primary"
                                                     />
-                                                    Planta da Sala
+                                                    Planta do AP
                                                 </label>
                                                 <input
                                                     ref={plantaInputRef}
@@ -2130,7 +2130,7 @@ const Painel = () => {
                             ) : (
                                 <>
                                     <Check size={16} className="me-2" />
-                                    Salvar Sala
+                                    Salvar AP
                                 </>
                             )}
                         </Button>

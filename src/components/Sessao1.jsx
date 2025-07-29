@@ -81,7 +81,7 @@ function Sessao1() {
               style={{ marginTop: "130px" }}
             >
               <div style={{ fontSize: "28px", fontWeight: 300 }}>
-                Escolha seu Andar → Veja as Salas Disponíveis
+                Escolha seu Andar → Veja os Apartamento Disponíveis
               </div>
               <div style={{ fontSize: "28px", fontWeight: 300 }}>
                 Acesse os Valores → Veja a Rentabilidade
@@ -94,7 +94,7 @@ function Sessao1() {
               style={{ marginTop: "40px", fontSize: "20px", fontWeight: 300 }}
             >
               <div>Escolha seu Andar</div>
-              <div>Veja as Salas Disponíveis</div>
+              <div>Veja os Apartamentos Disponíveis</div>
               <div style={{ marginTop: "10px" }}>Acesse os Valores</div>
               <div>Veja a Rentabilidade</div>
             </div>

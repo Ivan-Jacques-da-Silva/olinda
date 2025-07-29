@@ -47,7 +47,7 @@ const Andares = () => {
                     );
                 }
                 const data = await response.json();
-                console.log("Dados recebidos das salas:", data); // Debug
+                console.log("Dados recebidos dos AP:", data); // Debug
 
                 if (data.sucesso && data.produtos) {
                     setDadosProduto(data);
@@ -62,7 +62,7 @@ const Andares = () => {
                     });
                 }
             } catch (error) {
-                console.error("Erro ao buscar salas:", error.message);
+                console.error("Erro ao buscar AP:", error.message);
                 // Dados de fallback para demonstração
                 setDadosProduto({
                     produtos: [
@@ -96,7 +96,7 @@ const Andares = () => {
                             className="spinner-border text-primary mb-3"
                             role="status"
                         ></div>
-                        <h5>Carregando informações das salas...</h5>
+                        <h5>Carregando informações dos AP...</h5>
                     </div>
                 </Container>
             </div>
@@ -343,7 +343,7 @@ const Andares = () => {
                                             }}
                                         >
                                             Escolha
-                                            <br /> sua sala
+                                            <br /> seu AP
                                         </h3>
                                     </div>
                                     <div className="d-flex flex-wrap align-items-center gap-1 pl-3">
@@ -402,7 +402,7 @@ const Andares = () => {
                                                     }
                                                     alt={`Planta da Sala ${salaSelecionada}`}
                                                     className="img-fluid justify-content-center px-3 planta-img"
-                                                    style={{ height: "auto" }}
+                                                    style={{ height: "auto"}}
                                                     onError={(e) =>
                                                     (e.target.style.display =
                                                         "none")
@@ -445,8 +445,8 @@ const Andares = () => {
                                                 <div className="fw-bold text-white mt-2">
                                                     {salaAtual?.atributos?.nome?.[0]
                                                         ?.valor
-                                                        ? `Sala Comercial ${salaAtual.atributos.nome[0].valor}`
-                                                        : "Selecione uma sala"}
+                                                        ? `${salaAtual.atributos.nome[0].valor}`
+                                                        : "Selecione uma AP"}
                                                 </div>
                                                 <div>
                                                     {salaAtual?.atributos?.area?.[0]
@@ -458,7 +458,7 @@ const Andares = () => {
                                             <table className="table table-sm mb-3">
                                                 <tbody>
                                                     <tr>
-                                                        <td>Valor da Sala</td>
+                                                        <td>Valor da Apartamento</td>
                                                         <td className="text-end">
                                                             R${" "}
                                                             {valorSala.toLocaleString(
@@ -551,7 +551,7 @@ const Andares = () => {
                                                             )}
                                                         </td>
                                                     </tr>
-                                                    <tr className="fw-bold">
+                                                    {/* <tr className="fw-bold">
                                                         <td>Total</td>
                                                         <td className="text-end">
                                                             R${" "}
@@ -559,7 +559,7 @@ const Andares = () => {
                                                                 "pt-BR",
                                                             )}
                                                         </td>
-                                                    </tr>
+                                                    </tr> */}
                                                 </tbody>
                                             </table>
                                             {/* <h5 className="text-center fw-bold mt-4 mb-3">
