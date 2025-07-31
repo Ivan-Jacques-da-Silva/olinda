@@ -1,4 +1,5 @@
-import React from "react";
+import Config from "../Config";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import logoCompleto from "../img/logo.png";
 import fundoHeader from "../img/fundoHeader.webp";
@@ -7,6 +8,9 @@ import iconeCirculo from "../img/iconeCirculo.webp";
 import "./sessoes.css";
 
 function Sessao1() {
+  const [porcentagemVendas, setPorcentagemVendas] = useState(75); // valor padrão
+  const [carregando, setCarregando] = useState(true);
+
   const posicoesAndares = [
     { andar: 16, top: 98 },
     { andar: 15, top: 129 },
@@ -20,8 +24,24 @@ function Sessao1() {
     { andar: 7, top: 379 },
     { andar: 6, top: 410 },
     { andar: 5, top: 441 },
-  ]
-    ;
+  ];
+
+  useEffect(() => {
+    const buscarPorcentagem = async () => {
+      try {
+        const res = await fetch(`${Config.api_url}/api/salas/porcentagem-vendas`);
+        const json = await res.json();
+        setPorcentagemVendas(json.data.porcentagemArredondada);
+
+      } catch (error) {
+        console.error("Erro ao buscar porcentagem de vendas:", error);
+      } finally {
+        setCarregando(false);
+      }
+    };
+
+    buscarPorcentagem();
+  }, []);
 
   return (
     <section
@@ -140,7 +160,7 @@ function Sessao1() {
                   color: "#FFF",
                 }}
               >
-                75% VENDIDO
+                {carregando ? "..." : `${porcentagemVendas}% VENDIDO`}
               </div>
             </div>
           </div>

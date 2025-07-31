@@ -1,4 +1,3 @@
-
 const stripe = require('stripe');
 
 // Log detalhado das variáveis de ambiente na inicialização
@@ -12,48 +11,52 @@ console.log('🔒 STRIPE_WEBHOOK_SECRET:', process.env.STRIPE_WEBHOOK_SECRET ? `
 console.log('🌐 STRIPE_CHECKOUT_URL:', process.env.STRIPE_CHECKOUT_URL || '❌ NÃO DEFINIDA');
 console.log('🔧 =========================================================');
 
-// Verificar se as variáveis obrigatórias estão definidas
-const requiredEnvVars = [
-  'STRIPE_PUBLIC_KEY',
-  'STRIPE_SECRET_KEY', 
-  'STRIPE_PRODUCT_ID',
-  'STRIPE_WEBHOOK_SECRET'
-];
-
-const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+// Verificar se todas as variáveis obrigatórias estão definidas
+const requiredVars = ['STRIPE_PUBLIC_KEY', 'STRIPE_SECRET_KEY', 'STRIPE_PRODUCT_ID', 'STRIPE_WEBHOOK_SECRET'];
+const missingVars = requiredVars.filter(varName => !process.env[varName]);
 
 if (missingVars.length > 0) {
-  console.error('❌ ========== ERRO DE CONFIGURAÇÃO ==========');
-  console.error('❌ Variáveis de ambiente obrigatórias não encontradas:');
+  console.log(`⚠️  ========== AVISO DE CONFIGURAÇÃO ==========`);
   missingVars.forEach(varName => {
-    console.error(`❌ ${varName}: NÃO DEFINIDA`);
+    console.log(`⚠️  ${varName}: NÃO DEFINIDA`);
   });
-  console.error('❌ Verifique se o arquivo .env existe e contém todas as variáveis');
-  console.error('❌ ==========================================');
-  throw new Error(`Variáveis de ambiente obrigatórias não encontradas: ${missingVars.join(', ')}`);
+  console.log(`⚠️  Funcionalidades do Stripe não estarão disponíveis`);
+  console.log(`⚠️  Configure as variáveis para habilitar pagamentos`);
+  console.log(`⚠️  ==========================================`);
+
+  // Definir valores padrão para desenvolvimento
+  if (!process.env.STRIPE_PUBLIC_KEY) process.env.STRIPE_PUBLIC_KEY = '';
+  if (!process.env.STRIPE_SECRET_KEY) process.env.STRIPE_SECRET_KEY = '';
+  if (!process.env.STRIPE_PRODUCT_ID) process.env.STRIPE_PRODUCT_ID = '';
+  if (!process.env.STRIPE_WEBHOOK_SECRET) process.env.STRIPE_WEBHOOK_SECRET = '';
 }
 
 // Validar formato das chaves
-if (!process.env.STRIPE_SECRET_KEY.startsWith('sk_')) {
+if (process.env.STRIPE_SECRET_KEY && !process.env.STRIPE_SECRET_KEY.startsWith('sk_')) {
   throw new Error('STRIPE_SECRET_KEY deve começar com "sk_"');
 }
 
-if (!process.env.STRIPE_PUBLIC_KEY.startsWith('pk_')) {
+if (process.env.STRIPE_PUBLIC_KEY && !process.env.STRIPE_PUBLIC_KEY.startsWith('pk_')) {
   throw new Error('STRIPE_PUBLIC_KEY deve começar com "pk_"');
 }
 
-if (!process.env.STRIPE_WEBHOOK_SECRET.startsWith('whsec_')) {
+if (process.env.STRIPE_WEBHOOK_SECRET && !process.env.STRIPE_WEBHOOK_SECRET.startsWith('whsec_')) {
   throw new Error('STRIPE_WEBHOOK_SECRET deve começar com "whsec_"');
 }
 
-// Inicializar Stripe com chave secreta
+// Inicializar Stripe com chave secreta (somente se disponível)
 let stripeInstance;
 try {
-  stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
-  console.log('✅ Stripe inicializado com sucesso');
+  if (process.env.STRIPE_SECRET_KEY && process.env.STRIPE_SECRET_KEY !== '') {
+    stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
+    console.log('✅ Stripe inicializado com sucesso');
+  } else {
+    console.log('⚠️ Stripe não inicializado - variáveis não definidas');
+    stripeInstance = null;
+  }
 } catch (error) {
   console.error('❌ Erro ao inicializar Stripe:', error.message);
-  throw error;
+  stripeInstance = null;
 }
 
 // Detectar ambiente baseado na chave secreta

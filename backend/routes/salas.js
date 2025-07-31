@@ -274,4 +274,42 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// GET /api/salas/porcentagem-vendas - Calcular porcentagem de vendas
+router.get('/porcentagem-vendas', async (req, res) => {
+  try {
+    // Buscar total de salas
+    const totalSalas = await prisma.sala.count();
+    
+    // Buscar salas vendidas (disponivel = false)
+    const salasVendidas = await prisma.sala.count({
+      where: { disponivel: false }
+    });
+
+    // Calcular porcentagem
+    const porcentagem = totalSalas > 0 ? (salasVendidas / totalSalas) * 100 : 0;
+    
+    // Arredondar para baixo em múltiplos de 5
+    const porcentagemArredondada = Math.floor(porcentagem / 5) * 5;
+
+    res.json({
+      sucesso: true,
+      data: {
+        totalSalas,
+        salasVendidas,
+        salasDisponiveis: totalSalas - salasVendidas,
+        porcentagemExata: Math.round(porcentagem * 100) / 100,
+        porcentagemArredondada
+      }
+    });
+
+  } catch (error) {
+    console.error('Erro ao calcular porcentagem de vendas:', error);
+    res.status(500).json({
+      sucesso: false,
+      mensagem: 'Erro interno do servidor',
+      erro: error.message
+    });
+  }
+});
+
 module.exports = router;

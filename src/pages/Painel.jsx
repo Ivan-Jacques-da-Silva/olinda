@@ -245,8 +245,8 @@ const Painel = () => {
     }, [termoPesquisa, filtroDisponibilidade]);
 
     const marcarComoVisualizado = async (tipo, id) => {
+        const token = localStorage.getItem("admin-token");
         try {
-            const token = localStorage.getItem("admin-token");
             const response = await fetch(
                 `${Config.api_url}/api/formularios/admin/${tipo}/${id}/visualizar`,
                 {
@@ -1795,17 +1795,14 @@ const Painel = () => {
                                                         <option value="">
                                                             Selecione...
                                                         </option>
-                                                        <option value="Noroeste">
-                                                            Noroeste
+                                                        <option value="Frente Sul">
+                                                            Frente Sul
                                                         </option>
-                                                        <option value="Nordeste">
-                                                            Nordeste
+                                                        <option value="Frente Leste">
+                                                            Frente Leste
                                                         </option>
-                                                        <option value="Sudeste">
-                                                            Sudeste
-                                                        </option>
-                                                        <option value="Sudoeste">
-                                                            Sudoeste
+                                                        <option value="Frente Norte">
+                                                            Frente Norte
                                                         </option>
                                                     </Form.Select>
                                                 </FloatingLabel>
