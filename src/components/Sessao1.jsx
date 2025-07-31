@@ -213,12 +213,12 @@ function Sessao1() {
                   >
                     {andar}º Andar
                     {andar === 16 && " - Cobertura"}
-                    {andar === 5 && (
+                    {/* {andar === 5 && (
                       <>
                         <br />
                         Pavimento <br /> Prime
                       </>
-                    )}
+                    )} */}
 
                   </div>
                 </React.Fragment>
@@ -237,13 +237,15 @@ function Sessao1() {
                   color: "#fff",
                 }}
               >
-                BEM VINDO AO NOVO!
+                Familiar
+                Moderno<br />
+                Completo
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 }
 

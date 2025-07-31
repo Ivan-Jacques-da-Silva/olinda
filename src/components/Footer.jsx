@@ -31,9 +31,8 @@ function Rodape() {
                   margin: '30px 0',
                 }}
               />
-
               {/* Endereço */}
-              <p className="mb-1">Av. Nereu Ramos, 389 - Centro - Chapecó</p>
+              <p className="mb-1">Av. Nereu Ramos, 1320 D - Centro - Chapecó</p>
               <p className="mb-1">Santa Catarina - Brasil</p>
               <p className="mb-4">CEP: 89802-411</p>
 

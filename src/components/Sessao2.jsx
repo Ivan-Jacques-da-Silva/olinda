@@ -13,6 +13,19 @@ import icone7 from '../img/icone7.webp';
 import icone8 from '../img/icone8.webp';
 import iconeMarca from '../img/iconeMarca.webp';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBuilding,
+  faCar,
+  faWaterLadder,
+  faUtensils,
+  faDumbbell,
+  faSpa,
+  faVolleyball,
+  faMapMarkerAlt,
+} from '@fortawesome/free-solid-svg-icons';
+
+
 function Sessao2() {
   return (
     <section
@@ -75,31 +88,34 @@ function Sessao2() {
               }}
             >
               <div className="row row-cols-2 g-3">
-                {[
-                  [icone2, '120 salas de 54 a 78m²'],
-                  [icone3, '30 garagens rotativas'],
-                  [icone4, 'Port-chochère com pista dupla'],
-                  [icone5, 'Pub Executivo'],
-                  [icone6, '2 Salões Gourmets'],
-                  [icone7, 'Espaço descompressão'],
-                  [icone8, 'Conceito internacional'],
-                  [icone1, 'Alto potencial de valorização'],
-                ].map(([icone, texto], i) => (
-                  <div key={i} className="col d-flex align-items-start gap-2">
-                    <img src={icone} alt={`Ícone ${i + 1}`} style={{ width: '30px' }} />
-                    <span
-                      style={{
-                        fontFamily: 'Roboto, sans-serif',
-                        fontWeight: 300,
-                        fontSize: '16px',
-                        lineHeight: '130%',
-                        color: '#fff',
-                      }}
-                    >
-                      {texto}
-                    </span>
-                  </div>
-                ))}
+                {
+                  [
+                    [faBuilding, '46 apartamentos entre 73m² e 109m²'],
+                    [faCar, '1 ou 2 vagas de garagem por unidade'],
+                    [faWaterLadder, 'Piscina e terraço panorâmico'],
+                    [faUtensils, 'Dois salões gourmets'],
+                    [faDumbbell, 'Espaço coworking e academia ampla'],
+                    [faSpa, 'Sauna, brinquedoteca e chimarródromo'],
+                    [faVolleyball, 'Quadra poliesportiva exclusiva'],
+                    [faMapMarkerAlt, 'Localização privilegiada em Chapecó'],
+                  ].map(([icone, texto], i) => (
+                    <div key={i} className="col d-flex align-items-start gap-2">
+                      <FontAwesomeIcon icon={icone} size="lg" style={{ color: '#FFAB52', marginTop: '4px' }} />
+                      <span
+                        style={{
+                          fontFamily: 'Roboto, sans-serif',
+                          fontWeight: 300,
+                          fontSize: '16px',
+                          lineHeight: '130%',
+                          color: '#fff',
+                        }}
+                      >
+                        {texto}
+                      </span>
+                    </div>
+                  ))
+
+                }
               </div>
             </div>
           </div>
