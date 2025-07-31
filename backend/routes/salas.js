@@ -66,7 +66,7 @@ router.get('/', async (req, res) => {
     });
 
     // Converter para array e ordenar
-    produtos[0].variacoes = Object.values(andares).sort((a, b) => 
+    produtos[0].variacoes = Object.values(andares).sort((a, b) =>
       a.atributos.andar[0].valor - b.atributos.andar[0].valor
     );
 
@@ -167,15 +167,15 @@ router.post('/', upload.fields([
       data: dadosSala
     });
 
-    res.json({ 
-      sucesso: true, 
+    res.json({
+      sucesso: true,
       mensagem: 'Sala criada com sucesso!',
       data: sala
     });
   } catch (error) {
     console.error('Erro ao criar sala:', error);
-    res.status(500).json({ 
-      sucesso: false, 
+    res.status(500).json({
+      sucesso: false,
       mensagem: 'Erro ao criar sala: ' + error.message
     });
   }
@@ -198,9 +198,9 @@ router.put('/:id', upload.fields([
     });
 
     if (!salaExistente) {
-      return res.status(404).json({ 
-        sucesso: false, 
-        mensagem: 'Sala não encontrada' 
+      return res.status(404).json({
+        sucesso: false,
+        mensagem: 'Sala não encontrada'
       });
     }
 
@@ -227,15 +227,15 @@ router.put('/:id', upload.fields([
       data: updateData
     });
 
-    res.json({ 
-      sucesso: true, 
+    res.json({
+      sucesso: true,
       mensagem: 'Sala atualizada com sucesso!',
       data: sala
     });
   } catch (error) {
     console.error('Erro ao atualizar sala:', error);
-    res.status(500).json({ 
-      sucesso: false, 
+    res.status(500).json({
+      sucesso: false,
       mensagem: 'Erro ao atualizar sala: ' + error.message
     });
   }
@@ -251,9 +251,9 @@ router.delete('/:id', async (req, res) => {
     });
 
     if (!sala) {
-      return res.status(404).json({ 
-        sucesso: false, 
-        mensagem: 'Sala não encontrada' 
+      return res.status(404).json({
+        sucesso: false,
+        mensagem: 'Sala não encontrada'
       });
     }
 
@@ -261,14 +261,14 @@ router.delete('/:id', async (req, res) => {
       where: { id: parseInt(id) }
     });
 
-    res.json({ 
-      sucesso: true, 
-      mensagem: 'Sala deletada com sucesso!' 
+    res.json({
+      sucesso: true,
+      mensagem: 'Sala deletada com sucesso!'
     });
   } catch (error) {
     console.error('Erro ao deletar sala:', error);
-    res.status(500).json({ 
-      sucesso: false, 
+    res.status(500).json({
+      sucesso: false,
       mensagem: 'Erro ao deletar sala: ' + error.message
     });
   }
@@ -277,18 +277,15 @@ router.delete('/:id', async (req, res) => {
 // GET /api/salas/porcentagem-vendas - Calcular porcentagem de vendas
 router.get('/porcentagem-vendas', async (req, res) => {
   try {
-    // Buscar total de salas
     const totalSalas = await prisma.sala.count();
-    
-    // Buscar salas vendidas (disponivel = false)
     const salasVendidas = await prisma.sala.count({
       where: { disponivel: false }
     });
 
-    // Calcular porcentagem
+    console.log("📊 totalSalas:", totalSalas);
+    console.log("📉 salasVendidas:", salasVendidas);
+
     const porcentagem = totalSalas > 0 ? (salasVendidas / totalSalas) * 100 : 0;
-    
-    // Arredondar para baixo em múltiplos de 5
     const porcentagemArredondada = Math.floor(porcentagem / 5) * 5;
 
     res.json({
@@ -301,9 +298,8 @@ router.get('/porcentagem-vendas', async (req, res) => {
         porcentagemArredondada
       }
     });
-
   } catch (error) {
-    console.error('Erro ao calcular porcentagem de vendas:', error);
+    console.error("❌ Erro ao calcular porcentagem:", error); 
     res.status(500).json({
       sucesso: false,
       mensagem: 'Erro interno do servidor',
@@ -311,5 +307,6 @@ router.get('/porcentagem-vendas', async (req, res) => {
     });
   }
 });
+
 
 module.exports = router;
