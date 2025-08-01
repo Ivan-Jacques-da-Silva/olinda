@@ -25,7 +25,7 @@ function Sessao3() {
 
         <div className="">
           <a
-            href="/andares?andar=16"
+            href="/sistema/andares?andar=16"
             className="px-4 py-2 d-inline-block"
             style={{
               backgroundColor: '#fff',

@@ -201,7 +201,7 @@ const Andares = () => {
                                 {/* <a href="#" className="ws-nav-link mx-3">CONTATO</a> */}
                                 <Button
                                     as="a"
-                                    href="https://olindaresidence.com.br/sistema/folder-wall-street-corporate.pdf"
+                                    href="https://olindaresidence.com.br/sistema/OlindaResidence.pdf"
                                     download
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -447,6 +447,21 @@ const Andares = () => {
                                                         ?.valor
                                                         ? `${salaAtual.atributos.nome[0].valor}`
                                                         : "Selecione uma AP"}
+                                                </div>
+                                                <div className="text-white mt-1">
+                                                    {salaAtual?.atributos?.nome?.[0]?.valor && (() => {
+                                                        const nomeAP = salaAtual.atributos.nome[0].valor;
+                                                        if (nomeAP.includes('AP 1')) {
+                                                            return 'Ampla Suíte + 02 dormitórios, com 02 vagas de garagem';
+                                                        } else if (nomeAP.includes('AP 2')) {
+                                                            return 'Ampla Suíte + 02 dormitórios, com 02 vagas de garagem';
+                                                        } else if (nomeAP.includes('AP 3')) {
+                                                            return 'Suíte + 01 dormitório, com uma ou duas vagas de garagem';
+                                                        } else if (nomeAP.includes('AP 4')) {
+                                                            return 'Suíte + 01 dormitório, com uma ou duas vagas de garagem';
+                                                        }
+                                                        return '';
+                                                    })()}
                                                 </div>
                                                 <div>
                                                     {salaAtual?.atributos?.area?.[0]

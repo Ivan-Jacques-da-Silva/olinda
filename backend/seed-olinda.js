@@ -14,7 +14,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-1601.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1601.pdf",
     },
   });
 
@@ -29,7 +29,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-1501.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1501.pdf",
     },
   });
 
@@ -44,7 +44,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-1401.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1401.pdf",
     },
   });
 
@@ -59,7 +59,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-1301.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1301.pdf",
     },
   });
 
@@ -74,7 +74,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-1201.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1201.pdf",
     },
   });
 
@@ -89,7 +89,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-1101.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1101.pdf",
     },
   });
 
@@ -104,7 +104,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-1001.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1001.pdf",
     },
   });
 
@@ -119,7 +119,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-901.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 901.pdf",
     },
   });
 
@@ -134,7 +134,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-801.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 801.pdf",
     },
   });
 
@@ -149,7 +149,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-701.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 701.pdf",
     },
   });
 
@@ -164,7 +164,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-601.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 601.pdf",
     },
   });
 
@@ -179,7 +179,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
       planta: "seedPlanta/plantatipo1.png",
-      proposta_pdf: "uploads/proposta-501.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 501.pdf",
     },
   });
 
@@ -195,7 +195,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-1602.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1602.pdf",
     },
   });
 
@@ -210,7 +210,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-1502.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1502.pdf",
     },
   });
 
@@ -225,7 +225,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-1402.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1402.pdf",
     },
   });
 
@@ -240,7 +240,7 @@ async function main() {
       disponivel: false,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-602.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 602.pdf",
     },
   });
 
@@ -255,7 +255,7 @@ async function main() {
       disponivel: false,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-602.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 602.pdf",
     },
   });
 
@@ -270,7 +270,7 @@ async function main() {
       disponivel: false,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-602.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 602.pdf",
     },
   });
 
@@ -285,7 +285,7 @@ async function main() {
       disponivel: false,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-602.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 602.pdf",
     },
   });
 
@@ -300,7 +300,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-902.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 902.pdf",
     },
   });
 
@@ -315,7 +315,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-802.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 802.pdf",
     },
   });
 
@@ -330,7 +330,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-702.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 702.pdf",
     },
   });
 
@@ -345,7 +345,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-602.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 602.pdf",
     },
   });
 
@@ -360,7 +360,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo2.png",
       planta: "seedPlanta/plantatipo2.png",
-      proposta_pdf: "uploads/proposta-502.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 502.pdf",
     },
   });
 
@@ -376,7 +376,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-1503.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1503.pdf",
     },
   });
 
@@ -391,7 +391,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-1403.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1403.pdf",
     },
   });
 
@@ -406,7 +406,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-1303.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1303.pdf",
     },
   });
 
@@ -421,7 +421,7 @@ async function main() {
       disponivel: false,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-1303.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1303.pdf",
     },
   });
 
@@ -436,7 +436,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-1103.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1103.pdf",
     },
   });
 
@@ -451,7 +451,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-1003.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1003.pdf",
     },
   });
 
@@ -466,7 +466,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-903.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 903.pdf",
     },
   });
 
@@ -481,7 +481,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-803.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 803.pdf",
     },
   });
 
@@ -496,7 +496,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-703.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 703.pdf",
     },
   });
 
@@ -511,7 +511,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-603.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 603.pdf",
     },
   });
 
@@ -526,7 +526,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo3.png",
       planta: "seedPlanta/plantatipo3.png",
-      proposta_pdf: "uploads/proposta-503.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 503.pdf",
     },
   });
 
@@ -542,7 +542,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-1504.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1504.pdf",
     },
   });
 
@@ -557,7 +557,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-1404.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1404.pdf",
     },
   });
 
@@ -572,7 +572,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-1304.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1304.pdf",
     },
   });
 
@@ -587,7 +587,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-1204.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1204.pdf",
     },
   });
 
@@ -602,7 +602,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-1104.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1104.pdf",
     },
   });
 
@@ -617,7 +617,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-1004.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 1004.pdf",
     },
   });
 
@@ -632,7 +632,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-904.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 904.pdf",
     },
   });
 
@@ -647,7 +647,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-804.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 804.pdf",
     },
   });
 
@@ -662,7 +662,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-704.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 704.pdf",
     },
   });
 
@@ -677,7 +677,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-604.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 604.pdf",
     },
   });
 
@@ -692,7 +692,7 @@ async function main() {
       disponivel: true,
       imagem: "seedImg/aptipo4.png",
       planta: "seedPlanta/plantatipo4.png",
-      proposta_pdf: "uploads/proposta-504.pdf",
+      proposta_pdf: "uploads/Proposta - Olinda Residence 504.pdf",
     },
   });
 

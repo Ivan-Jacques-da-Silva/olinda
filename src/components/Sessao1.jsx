@@ -137,7 +137,7 @@ function Sessao1() {
 
               <Button
                 as="a"
-                href="https://olindaresidence.com.br/folder-wall-street-corporate.pdf"
+                href="https://olindaresidence.com.br/sistema/OlindaResidence.pdf"
                 download
                 target="_blank"
                 rel="noopener noreferrer"
@@ -249,7 +249,7 @@ function Sessao1() {
                 style={{
                   position: "absolute",
                   bottom: "100px",
-                  right: "-280px",
+                  right: "-130px",
                   fontWeight: "500",
                   fontSize: "26px",
                   letterSpacing: "1px",
@@ -257,7 +257,7 @@ function Sessao1() {
                   color: "#fff",
                 }}
               >
-                Familiar
+                Familiar<br />
                 Moderno<br />
                 Completo
               </div>
