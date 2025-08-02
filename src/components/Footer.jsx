@@ -1,5 +1,5 @@
 import React from 'react';
-import imagemFundoFooter from '../img/footer.webp';
+import imagemFundoFooter from '../img/footer.jpg';
 import logoFooter from '../img/logo.png';
 
 function Rodape() {

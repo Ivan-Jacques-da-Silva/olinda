@@ -245,45 +245,51 @@ const Andares = () => {
                         show={mostrarMenu}
                         onHide={() => setMostrarMenu(false)}
                         placement="top"
+                        backdrop={true}
+                        scroll={false}
+                        style={{ height: 'auto', maxHeight: '60vh' }}
                     >
-                        <Offcanvas.Header closeButton>
+                        <Offcanvas.Header closeButton className="border-bottom">
                             <Offcanvas.Title className="fw-bold">
                                 Menu
                             </Offcanvas.Title>
                         </Offcanvas.Header>
-                        <Offcanvas.Body className="d-flex flex-column p-3 text-center">
+                        <Offcanvas.Body className="d-flex flex-column p-3 text-center" style={{ gap: '10px' }}>
                             <Link
                                 to="/"
-                                className="btn btn-outline-dark mb-1 fw-semibold"
+                                className="btn btn-outline-dark fw-semibold"
                                 onClick={() => setMostrarMenu(false)}
+                                style={{ padding: '8px 16px' }}
                             >
                                 INÍCIO
                             </Link>
                             <a
-                                href="#"
-                                className="btn btn-outline-dark mb-1 fw-semibold"
+                                href="https://tour.meupasseiovirtual.com/view/gUWC73DXAkD"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-outline-dark fw-semibold"
                                 onClick={() => setMostrarMenu(false)}
+                                style={{ padding: '8px 16px' }}
                             >
                                 TOUR VIRTUAL
                             </a>
-                            <a
-                                href="#"
-                                className="btn btn-outline-dark mb-1 fw-semibold"
-                                onClick={() => setMostrarMenu(false)}
-                            >
-                                CONTATO
-                            </a>
-                            <a
-                                href="#"
+                            <Button
+                                as="a"
+                                href="https://olindaresidence.com.br/sistema/OlindaResidence.pdf"
+                                download
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="btn fw-bold"
                                 style={{
                                     backgroundColor: "#FFF",
                                     color: "#135454",
+                                    border: "1px solid #135454",
+                                    padding: '8px 16px'
                                 }}
                                 onClick={() => setMostrarMenu(false)}
                             >
                                 BAIXAR PDF
-                            </a>
+                            </Button>
                         </Offcanvas.Body>
                     </Offcanvas>
                 </Container>
@@ -446,7 +452,7 @@ const Andares = () => {
                                             <h4 className="fw-bold text-center mb-4">
                                                 PROPOSTA ABAIXO
                                             </h4>
-                                            <div className="bg-dark text-white p-3 rounded text-center mb-3">
+                                            <div className="proposta-header text-white p-3 rounded text-center mb-3">
                                                 <div className="fw-bold fs-5">
                                                     OLINDA RESIDENCE
                                                 </div>

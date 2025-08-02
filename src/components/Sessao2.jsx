@@ -65,8 +65,8 @@ function Sessao2() {
                   color: '#fff',
                 }}
               >
-                <strong style={{ display: 'block' }}>O melhor prédio</strong>
-                <span style={{ fontWeight: 300 }}>comercial de <br /> Chapecó - SC</span>
+                <strong style={{ display: 'block' }}>Olinda</strong>sofisticação <br />
+                <span style={{ fontWeight: 300 }}> no ponto mais <br /> desejado</span>
               </h2>
             </div>
           </div>
