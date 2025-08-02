@@ -310,95 +310,77 @@ html {
 .btn-warning:active,
 /* .btn-warning:focus, */
 .btn-warning:hover {
-  background-color: #f6faff !important;
-  color: #135454 !important;
-  border: 1px solid #135454 !important;
+    background-color: #f6faff !important;
+    color: #135454 !important;
+    border: 1px solid #135454 !important;
 }
 
 /* Estilos para botões dos andares */
 .btn-outline-dark:hover {
-  background-color: #0d4a3a !important;
-  border-color: #0d4a3a !important;
-  color: white !important;
+    background-color: #0d4a3a !important;
+    border-color: #0d4a3a !important;
+    color: white !important;
 }
 
 .btn-dark {
-  background-color: #0d4a3a !important;
-  border-color: #0d4a3a !important;
+    background-color: #0d4a3a !important;
+    border-color: #0d4a3a !important;
 }
 
 .btn-dark:hover {
-  background-color: #0a3d30 !important;
-  border-color: #0a3d30 !important;
+    background-color: #0a3d30 !important;
+    border-color: #0a3d30 !important;
 }
 
 /* Cabeçalho da proposta com cor verde escura */
 .proposta-header {
-  background-color: #0d4a3a !important;
-  color: white !important;
+    background-color: #0d4a3a !important;
+    color: white !important;
 }
 
 /* Container das salas com 4 colunas fixas e scroll responsivo */
 .salas-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-  overflow-x: auto;
-  overflow-y: visible;
-  padding: 10px;
-  min-height: 140px;
+    display: grid;
+    grid-template-columns: repeat(4, 340px);
+    gap: 0.5rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 10px;
+    min-height: 140px;
+    width: 100%;
+    justify-content: start;
 }
 
-/* Telas médias - mantém 4 colunas com scroll horizontal se necessário */
-@media (max-width: 992px) {
-  .salas-container {
-    grid-template-columns: repeat(4, minmax(200px, 1fr));
-    overflow-x: auto;
-    gap: 0.3rem;
-  }
-}
-
-/* Telas pequenas - mantém 4 colunas, ativa scroll horizontal */
-@media (max-width: 768px) {
-  .salas-container {
-    grid-template-columns: repeat(4, minmax(180px, 1fr));
-    overflow-x: auto;
-    gap: 0.2rem;
-    padding: 5px;
-  }
-}
-
-/* Telas muito pequenas - mantém 4 colunas compactas com scroll */
-@media (max-width: 576px) {
-  .salas-container {
-    grid-template-columns: repeat(4, minmax(150px, 1fr));
-    overflow-x: auto;
-    gap: 0.1rem;
-    padding: 3px;
-  }
+/* Para telas desktop - força largura mínima total para ativar scroll */
+@media (min-width: 768px) {
+    .salas-container {
+        min-width: 1400px;
+        /* 4 * 340px + gaps + padding */
+        width: max-content;
+    }
 }
 
 /* Correções para o Offcanvas mobile */
 .offcanvas.show {
-  height: auto !important;
-  max-height: 60vh !important;
+    height: auto !important;
+    max-height: 60vh !important;
 }
 
 .offcanvas-body {
-  overflow-y: auto !important;
-  max-height: calc(60vh - 60px) !important;
+    overflow-y: auto !important;
+    max-height: calc(60vh - 60px) !important;
 }
 
 .offcanvas-header {
-  flex-shrink: 0 !important;
-  height: 60px !important;
+    flex-shrink: 0 !important;
+    height: 60px !important;
 }
 
 /* Evitar conflitos de z-index */
 .offcanvas {
-  z-index: 1055 !important;
+    z-index: 1055 !important;
 }
 
 .offcanvas-backdrop {
-  z-index: 1054 !important;
+    z-index: 1054 !important;
 }

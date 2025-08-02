@@ -339,7 +339,7 @@ const Andares = () => {
 
                     {/* Coluna do Conteúdo - Desktop: Salas, Planta e Proposta empilhados */}
                     <Col xs={12} md={12} xl={10} className="px-0">
-                        <div className="border border-success rounded p-2">
+                        <div className="p-2">
                             {/* Seção das Salas */}
                             <div className="mb-4 col-salas">
                                 <div className="d-flex justify-content-between align-items-center mb-3 p-2">
