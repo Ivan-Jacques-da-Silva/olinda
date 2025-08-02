@@ -1890,7 +1890,7 @@ const Painel = () => {
                                                                                     variant="outline-info"
                                                                                     onClick={() =>
                                                                                         window.open(
-                                                                                            `${Config.api_url}/uploads/${salaEdicao.proposta_pdf}`,
+                                                                                            `${Config.api_url}${salaEdicao.proposta_pdf}`,
                                                                                             '_blank'
                                                                                         )
                                                                                     }

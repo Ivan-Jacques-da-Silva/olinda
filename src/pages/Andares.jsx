@@ -108,13 +108,21 @@ const Andares = () => {
     const descontoFixo = 36801.63;
     const valorTotalSemDesconto = valorSala + valorGaragem;
     const valorTotal = valorTotalSemDesconto - descontoFixo;
-    const entrada = valorTotalSemDesconto * 0.3;
-    const reforco2025 = valorTotalSemDesconto * 0.1;
-    const reforco2026 = valorTotalSemDesconto * 0.1;
-    const reforco2027 = valorTotalSemDesconto * 0.1;
+    // const entrada = valorTotalSemDesconto * 0.3;
+    const entrada = valorSala * 0.3;
+    const reforco2025 = valorSala * 0.1;
+    const reforco2026 = valorSala * 0.1;
+    const reforco2027 = valorSala * 0.1;
+    // const reforco2025 = valorTotalSemDesconto * 0.1;
+    // const reforco2026 = valorTotalSemDesconto * 0.1;
+    // const reforco2027 = valorTotalSemDesconto * 0.1;
+    // const valorParcelamento =
     const valorParcelamento =
-        valorTotalSemDesconto -
+    valorSala -
         (entrada + reforco2025 + reforco2026 + reforco2027);
+    // const valorParcelamento =
+    // valorTotalSemDesconto -
+    //     (entrada + reforco2025 + reforco2026 + reforco2027);
     const parcelaCub = valorParcelamento / 55;
     const valorizacaoEntrega = valorTotalSemDesconto * 1.9;
     const lucro = valorizacaoEntrega - valorTotalSemDesconto;

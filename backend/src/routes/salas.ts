@@ -82,7 +82,8 @@ router.get('/', async (req: Request<{}, any, any, SalaQuery>, res: Response) => 
             },
             arquivos: {
               imagens: sala.imagem ? [{ baixar: `/uploads/${sala.imagem}` }] : [],
-              plantas: sala.planta ? [{ baixar: `/uploads/${sala.planta}` }] : []
+              plantas: sala.planta ? [{ baixar: `/uploads/${sala.planta}` }] : [],
+              proposta_pdf: sala.proposta_pdf ? [{ baixar: `/${sala.proposta_pdf}` }] : []
             }
           });
           

@@ -9,10 +9,11 @@ const prisma = new PrismaClient();
 // Configuração do multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, './uploads/');
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
+    // Manter o nome original do arquivo
+    cb(null, file.originalname);
   }
 });
 
@@ -60,7 +61,7 @@ router.get('/', async (req, res) => {
         arquivos: {
           imagens: sala.imagem ? [{ baixar: `/uploads/${sala.imagem}` }] : [{ baixar: '/uploads/seedImg/sala1.png' }],
           plantas: sala.planta ? [{ baixar: `/uploads/${sala.planta}` }] : [{ baixar: '/uploads/seedPlanta/planta-sala-1.png' }],
-          proposta_pdf: sala.proposta_pdf ? [{ baixar: `/uploads/${sala.proposta_pdf}` }] : []
+          proposta_pdf: sala.proposta_pdf ? [{ baixar: `/${sala.proposta_pdf}` }] : []
         }
       });
     });

@@ -43,6 +43,7 @@ const Salas = ({
               const preco = parseFloat(sala.precos?.de?.[0]?.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
               const imagem = sala.arquivos?.imagens?.[0]?.baixar;
               const disponivel = sala.atributos?.disponibilidade?.[0]?.valor;
+              const propostaPdf = sala.arquivos?.proposta_pdf?.[0]?.baixar;
 
               return (
                 <div
