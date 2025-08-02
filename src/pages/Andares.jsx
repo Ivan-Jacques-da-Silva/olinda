@@ -118,7 +118,7 @@ const Andares = () => {
     // const reforco2027 = valorTotalSemDesconto * 0.1;
     // const valorParcelamento =
     const valorParcelamento =
-    valorSala -
+        valorSala -
         (entrada + reforco2025 + reforco2026 + reforco2027);
     // const valorParcelamento =
     // valorTotalSemDesconto -
@@ -247,14 +247,13 @@ const Andares = () => {
                         placement="top"
                         backdrop={true}
                         scroll={false}
-                        style={{ height: 'auto', maxHeight: '60vh' }}
                     >
                         <Offcanvas.Header closeButton className="border-bottom">
                             <Offcanvas.Title className="fw-bold">
                                 Menu
                             </Offcanvas.Title>
                         </Offcanvas.Header>
-                        <Offcanvas.Body className="d-flex flex-column p-3 text-center" style={{ gap: '10px' }}>
+                        <Offcanvas.Body className="d-flex flex-column p-3 text-center" style={{ gap: '10px', minHeight: 'auto' }}>
                             <Link
                                 to="/"
                                 className="btn btn-outline-dark fw-semibold"
@@ -295,7 +294,7 @@ const Andares = () => {
                 </Container>
             </header>
 
-            <Container fluid className="mt-4 p-1">
+            <Container fluid className="mt-4 p-1" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
                 <Row className={larguraTela < 1199 ? "" : "flex-nowrap"}>
                     {/* Coluna dos Andares - Desktop: 2 colunas */}
                     <Col xs={12} md={2} xl={2} className="px-2 col-andares">
@@ -416,7 +415,7 @@ const Andares = () => {
                                                     }
                                                     alt={`Planta da Sala ${salaSelecionada}`}
                                                     className="img-fluid justify-content-center px-3 planta-img"
-                                                    style={{ height: "auto"}}
+                                                    style={{ height: "auto" }}
                                                     onError={(e) =>
                                                     (e.target.style.display =
                                                         "none")
