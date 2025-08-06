@@ -27,8 +27,8 @@ const Salas = ({
           className="bi bi-building text-muted"
           style={{ fontSize: "3rem" }}
         ></i>
-        <h5 className="mt-3 text-muted">Nenhuma sala disponível</h5>
-        <p className="text-muted">Não há salas cadastradas para este andar.</p>
+        <h5 className="mt-3 text-muted">Nenhum apartamento disponível</h5>
+        <p className="text-muted">Não há apartamento cadastrado para este andar.</p>
       </div>
     );
   }

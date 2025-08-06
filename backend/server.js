@@ -89,13 +89,14 @@ app.use(cors({
   origin: [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
-    'https://olindaresidence.com.br/sistema',
-    'https://olindaresidence.com.br'
+    'https://olindaresidence.com.br',
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
+app.options('*', cors());
 
 // Webhook de TESTE
 app.post('/stripe/webhook/teste', express.raw({ type: 'application/json' }), async (req, res) => {

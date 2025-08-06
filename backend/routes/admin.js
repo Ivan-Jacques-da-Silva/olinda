@@ -58,8 +58,8 @@ router.get('/salas', authenticateAdmin, async (req, res) => {
 
     // console.log(`✅ Admin: ${salas.length} salas encontradas`);
 
-    res.json({ 
-      sucesso: true, 
+    res.json({
+      sucesso: true,
       data: salas,
       pagination: {
         total,
@@ -70,8 +70,8 @@ router.get('/salas', authenticateAdmin, async (req, res) => {
     });
   } catch (error) {
     console.error('❌ Erro ao buscar salas (admin):', error);
-    res.status(500).json({ 
-      sucesso: false, 
+    res.status(500).json({
+      sucesso: false,
       mensagem: 'Erro ao buscar salas: ' + error.message
     });
   }
@@ -111,8 +111,8 @@ router.get('/salas-list', authenticateAdmin, async (req, res) => {
       prisma.sala.count({ where })
     ]);
 
-    res.json({ 
-      sucesso: true, 
+    res.json({
+      sucesso: true,
       data: salas,
       pagination: {
         total,
@@ -123,8 +123,8 @@ router.get('/salas-list', authenticateAdmin, async (req, res) => {
     });
   } catch (error) {
     console.error('Erro ao buscar salas:', error);
-    res.status(500).json({ 
-      sucesso: false, 
+    res.status(500).json({
+      sucesso: false,
       mensagem: 'Erro ao buscar salas: ' + error.message
     });
   }
@@ -165,15 +165,15 @@ router.post('/salas', authenticateAdmin, upload.fields([
     // Registrar no histórico
     await registrarHistorico(req, 'CREATE', 'salas', sala.id, null, dadosSala);
 
-    res.json({ 
-      sucesso: true, 
+    res.json({
+      sucesso: true,
       mensagem: 'Sala criada com sucesso!',
       data: sala
     });
   } catch (error) {
     console.error('Erro ao criar sala:', error);
-    res.status(500).json({ 
-      sucesso: false, 
+    res.status(500).json({
+      sucesso: false,
       mensagem: 'Erro ao criar sala: ' + error.message
     });
   }
@@ -217,9 +217,9 @@ router.put('/salas/:id', authenticateAdmin, upload.fields([
 
     if (!salaAntes) {
       logOperation('SALA_UPDATE_ERRO', req, { erro: 'Sala não encontrada', salaId: id });
-      return res.status(404).json({ 
-        sucesso: false, 
-        mensagem: 'Sala não encontrada' 
+      return res.status(404).json({
+        sucesso: false,
+        mensagem: 'Sala não encontrada'
       });
     }
 
@@ -251,8 +251,8 @@ router.put('/salas/:id', authenticateAdmin, upload.fields([
 
     logOperation('SALA_UPDATE_SUCESSO', req, { salaId: sala.id, nome: sala.nome });
 
-    res.json({ 
-      sucesso: true, 
+    res.json({
+      sucesso: true,
       mensagem: 'Sala atualizada com sucesso!',
       data: sala
     });
@@ -286,8 +286,8 @@ ${'='.repeat(80)}
       mensagem = 'Já existe uma sala com estes dados';
     }
 
-    res.status(500).json({ 
-      sucesso: false, 
+    res.status(500).json({
+      sucesso: false,
       mensagem,
       codigo: 'SALA_UPDATE_ERROR',
       timestamp: new Date().toISOString()
@@ -305,9 +305,9 @@ router.delete('/salas/:id', authenticateAdmin, async (req, res) => {
     });
 
     if (!sala) {
-      return res.status(404).json({ 
-        sucesso: false, 
-        mensagem: 'Sala não encontrada' 
+      return res.status(404).json({
+        sucesso: false,
+        mensagem: 'Sala não encontrada'
       });
     }
 
@@ -318,14 +318,14 @@ router.delete('/salas/:id', authenticateAdmin, async (req, res) => {
     // Registrar no histórico
     await registrarHistorico(req, 'DELETE', 'salas', parseInt(id), sala, null);
 
-    res.json({ 
-      sucesso: true, 
-      mensagem: 'Sala deletada com sucesso!' 
+    res.json({
+      sucesso: true,
+      mensagem: 'Sala deletada com sucesso!'
     });
   } catch (error) {
     console.error('Erro ao deletar sala:', error);
-    res.status(500).json({ 
-      sucesso: false, 
+    res.status(500).json({
+      sucesso: false,
       mensagem: 'Erro ao deletar sala: ' + error.message
     });
   }
@@ -351,8 +351,8 @@ router.get('/historico', authenticateAdmin, async (req, res) => {
       prisma.historicoAlteracoes.count({ where })
     ]);
 
-    res.json({ 
-      sucesso: true, 
+    res.json({
+      sucesso: true,
       data: historico,
       pagination: {
         total,
@@ -363,8 +363,8 @@ router.get('/historico', authenticateAdmin, async (req, res) => {
     });
   } catch (error) {
     console.error('Erro ao buscar histórico:', error);
-    res.status(500).json({ 
-      sucesso: false, 
+    res.status(500).json({
+      sucesso: false,
       mensagem: 'Erro ao buscar histórico: ' + error.message
     });
   }
