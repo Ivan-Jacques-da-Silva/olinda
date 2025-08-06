@@ -239,7 +239,7 @@ const Painel = () => {
     const indiceFim = indiceInicio + itensPorPagina;
     const salasExibidas = salasFiltradas.slice(indiceInicio, indiceFim);
 
-    // Reset da página quando filtros mudam
+    // Reset da página quando filtros mudam (otimizado)
     useEffect(() => {
         setPaginaAtual(1);
     }, [termoPesquisa, filtroDisponibilidade]);
@@ -367,70 +367,98 @@ const Painel = () => {
         plantaInputRef.current?.click();
     };
 
-    // Handler para mudança de imagem
-    const handleImagemChange = (e) => {
+    // Handler para mudança de imagem (otimizado)
+    const handleImagemChange = useCallback((e) => {
         const file = e.target.files[0];
         if (!file) return;
 
         // Validar tipo de arquivo
-        const tiposPermitidos = ["image/png", "image/jpeg", "image/webp"];
+        const tiposPermitidos = ["image/png", "image/jpeg", "image/webp", "image/jpg"];
         if (!tiposPermitidos.includes(file.type)) {
             toast.error("Tipo de arquivo inválido! Use PNG, JPG ou WEBP.");
+            e.target.value = ""; // Limpar input
             return;
         }
 
         // Validar tamanho (10MB)
         if (file.size > 10485760) {
             toast.error("Arquivo muito grande! Máximo 10MB.");
+            e.target.value = ""; // Limpar input
             return;
+        }
+
+        // Limpar preview anterior se existir
+        if (imagemPreview && imagemPreview.startsWith('blob:')) {
+            URL.revokeObjectURL(imagemPreview);
         }
 
         setSalaEdicao((prev) => ({ ...prev, imagemFile: file }));
         const previewUrl = URL.createObjectURL(file);
         setImagemPreview(previewUrl);
-        toast.success("Imagem selecionada com sucesso!");
-    };
+        toast.success("Imagem selecionada!");
+    }, [imagemPreview]);
 
-    // Handler para mudança de planta
-    const handlePlantaChange = (e) => {
+    // Handler para mudança de planta (otimizado)
+    const handlePlantaChange = useCallback((e) => {
         const file = e.target.files[0];
         if (!file) return;
 
         // Validar tipo de arquivo
-        const tiposPermitidos = ["image/png", "image/jpeg", "image/webp"];
+        const tiposPermitidos = ["image/png", "image/jpeg", "image/webp", "image/jpg"];
         if (!tiposPermitidos.includes(file.type)) {
             toast.error("Tipo de arquivo inválido! Use PNG, JPG ou WEBP.");
+            e.target.value = ""; // Limpar input
             return;
         }
 
         // Validar tamanho (10MB)
         if (file.size > 10485760) {
             toast.error("Arquivo muito grande! Máximo 10MB.");
+            e.target.value = ""; // Limpar input
             return;
+        }
+
+        // Limpar preview anterior se existir
+        if (plantaPreview && plantaPreview.startsWith('blob:')) {
+            URL.revokeObjectURL(plantaPreview);
         }
 
         setSalaEdicao((prev) => ({ ...prev, plantaFile: file }));
         const previewUrl = URL.createObjectURL(file);
         setPlantaPreview(previewUrl);
-        toast.success("Planta selecionada com sucesso!");
-    };
+        toast.success("Planta selecionada!");
+    }, [plantaPreview]);
 
     const salvarSala = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
+            // Verificar token antes de tudo
+            const token = localStorage.getItem("admin-token");
+            if (!token) {
+                toast.error("Token de acesso não encontrado. Faça login novamente.");
+                navigate("/login");
+                return;
+            }
+
+            // Verificar se todos os campos obrigatórios estão presentes
+            const camposObrigatorios = ['numero', 'nome', 'andar', 'area', 'preco'];
+            const camposFaltando = camposObrigatorios.filter(campo => !salaEdicao[campo]);
+            
+            if (camposFaltando.length > 0) {
+                toast.error(`Campos obrigatórios faltando: ${camposFaltando.join(', ')}`);
+                return;
+            }
+
             const formData = new FormData();
-            formData.append("numero", salaEdicao.numero);
-            formData.append("andar", salaEdicao.andar);
-            formData.append("nome", salaEdicao.nome);
-            formData.append("area", salaEdicao.area);
-            formData.append("posicao", salaEdicao.posicao);
-            formData.append("preco", salaEdicao.preco);
-            formData.append(
-                "disponivel",
-                salaEdicao.disponivel ? "true" : "false",
-            );
+            formData.append("numero", String(salaEdicao.numero));
+            formData.append("andar", String(salaEdicao.andar));
+            formData.append("nome", String(salaEdicao.nome));
+            formData.append("area", String(salaEdicao.area));
+            formData.append("posicao", String(salaEdicao.posicao || ''));
+            formData.append("preco", String(salaEdicao.preco));
+            formData.append("disponivel", salaEdicao.disponivel ? "true" : "false");
 
             if (salaEdicao.imagemFile) {
                 formData.append("imagem", salaEdicao.imagemFile);
@@ -442,28 +470,18 @@ const Painel = () => {
                 formData.append("proposta_pdf", salaEdicao.propostaPdfFile);
             }
 
-            const token = localStorage.getItem("admin-token");
             let url, method;
-
             if (salaEdicao.id && salaEdicao.id !== null) {
-                // Edição - garantir que está usando o ID corretor
                 url = `${Config.api_url}/api/admin/salas/${salaEdicao.id}`;
                 method = "PUT";
                 console.log("EDITANDO sala com ID:", salaEdicao.id);
             } else {
-                // Criação - nova sala
                 url = `${Config.api_url}/api/admin/salas`;
                 method = "POST";
                 console.log("CRIANDO nova sala");
             }
 
-            console.log("Operação:", {
-                operacao: salaEdicao.id ? "EDIÇÃO" : "CRIAÇÃO",
-                url,
-                method,
-                salaId: salaEdicao.id,
-                disponivel: salaEdicao.disponivel,
-            });
+            console.log("📤 Enviando requisição:", { url, method, token: token.substring(0, 10) + "..." });
 
             const response = await fetch(url, {
                 method,
@@ -473,28 +491,50 @@ const Painel = () => {
                 body: formData,
             });
 
-            const result = await response.json();
-            console.log("Resposta do servidor:", result);
+            // Verificar se a resposta é válida
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error("Erro HTTP:", response.status, response.statusText, errorText);
+                
+                if (response.status === 401) {
+                    toast.error("Sessão expirada. Faça login novamente.");
+                    navigate("/login");
+                    return;
+                }
+                
+                if (response.status === 500) {
+                    toast.error("Erro interno do servidor. Verifique com o suporte");
+                    return;
+                }
+                
+                throw new Error(`Erro ${response.status}: ${response.statusText}`);
+            }
 
-            if (response.ok && result.sucesso) {
+            const result = await response.json();
+            console.log("✅ Resposta do servidor:", result);
+
+            if (result.sucesso) {
                 setShowSalaModal(false);
                 setSalaEdicao(null);
-                carregarDados();
-                toast.success(result.mensagem || "Sala salva com sucesso!");
                 setImagemPreview(null);
                 setPlantaPreview(null);
+                toast.success(result.mensagem || "Sala salva com sucesso!");
+                
+                // Recarregar dados sem usar o useEffect
+                setTimeout(() => carregarDados(), 100);
             } else {
-                const errorMessage =
-                    result.mensagem ||
-                    `Erro ${response.status}: ${response.statusText}`;
-                console.error("Erro na resposta:", errorMessage);
-                toast.error(errorMessage);
+                toast.error(result.mensagem || "Erro desconhecido");
             }
         } catch (error) {
-            console.error("Erro ao salvar sala:", error);
-            toast.error(
-                "Erro ao conectar com o servidor. Verifique sua conexão.",
-            );
+            console.error("❌ Erro detalhado ao salvar sala:", error);
+            
+            if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                toast.error("Erro de conexão. Verifique suporte.");
+            } else if (error.message.includes('Failed to fetch')) {
+                toast.error("Erro de rede. Verifique sua conexão com a internet.");
+            } else {
+                toast.error("Erro inesperado: " + error.message);
+            }
         } finally {
             setLoading(false);
         }
@@ -771,27 +811,14 @@ const Painel = () => {
 
     useEffect(() => {
         const token = localStorage.getItem("admin-token");
+        if (!token) return;
+        
         if (activeTab === "agendamentos") {
             buscarAgendamentos();
-        }
-        if (activeTab === "historico") {
+        } else if (activeTab === "historico") {
             buscarHistorico(historicoPage);
         }
     }, [activeTab, historicoPage]);
-
-    useEffect(() => {
-        const permissoesStorage = localStorage.getItem('permissoes');
-        const usuario = localStorage.getItem('usuario');
-
-        console.log('Debug - Usuário:', usuario);
-        console.log('Debug - Permissões raw:', permissoesStorage);
-
-        if (permissoesStorage) {
-            const permissoesArray = JSON.parse(permissoesStorage);
-            console.log('Debug - Permissões array:', permissoesArray);
-            setPermissoes(permissoesArray);
-        }
-    }, []);
 
     return (
         <Container
@@ -1829,7 +1856,7 @@ const Painel = () => {
                                                         className="form-check-label fw-semibold"
                                                         htmlFor="disponibilidade"
                                                     >
-                                                        Sala não está disponível para
+                                                        AP não está disponível para
                                                         venda
                                                     </label>
                                                 </div>

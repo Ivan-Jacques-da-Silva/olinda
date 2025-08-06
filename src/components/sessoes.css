@@ -74,7 +74,7 @@
   }
 
   .linha-andares-texto {
-    left: 310px!important;
+    left: 310px !important;
   }
 
   .predio-container {
@@ -82,4 +82,32 @@
     border-radius: 4px;
     padding-bottom: 20px;
   }
+}
+
+@media (max-width: 767px) {
+  .linha-andares-texto[data-andar="16"] {
+    /* top: 75px !important; */
+    /* sobe o texto pra caber a linha de baixo */
+    /* display: flex; */
+    /* flex-direction: column; */
+    align-items: flex-start;
+  }
+
+  .texto-andar-16 span {
+    line-height: 0.5;
+    text-align: left;
+  }
+
+  .texto-andar-16 {
+    margin-top: -8px;
+
+  }
+
+  .amdar-160-cobertura {
+    margin-left: 0!important;
+  }
+}
+
+.amdar-160-cobertura {
+  margin-left: 7px;
 }

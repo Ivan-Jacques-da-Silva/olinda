@@ -12,16 +12,62 @@ const prisma = new PrismaClient();
 // Configuração do multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    const fs = require('fs');
+    
+    let uploadDir = './uploads/';
+    
+    // Definir pasta específica baseada no tipo de arquivo
+    if (file.fieldname === 'planta') {
+      uploadDir = './uploads/seedPlanta/';
+    } else if (file.fieldname === 'imagem') {
+      uploadDir = './uploads/seedImg/';
+    }
+
+    // Criar diretório se não existir
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+      console.log(`📁 Diretório ${uploadDir} criado`);
+    }
+
+    console.log(`📂 Salvando ${file.fieldname} em: ${uploadDir}`);
+    cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
+    // Gerar nome único para evitar conflitos
+    const timestamp = Date.now();
+    const originalName = file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const filename = `${timestamp}-${originalName}`;
+    console.log('📎 Arquivo salvo como:', filename);
+    cb(null, filename);
   }
 });
 
-const upload = multer({
+const upload = multer({ 
   storage,
-  limits: { fileSize: 10 * 1024 * 1024 } // 10MB
+  limits: { 
+    fileSize: 10 * 1024 * 1024, // 10MB
+    fieldSize: 1024 * 1024 // 1MB para campos de texto
+  },
+  fileFilter: (req, file, cb) => {
+    console.log('🔍 Validando arquivo:', {
+      fieldname: file.fieldname,
+      originalname: file.originalname,
+      mimetype: file.mimetype,
+      size: file.size
+    });
+
+    // Permitir apenas imagens e PDFs
+    const allowedTypes = [
+      'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp',
+      'application/pdf'
+    ];
+
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error(`Tipo de arquivo não permitido: ${file.mimetype}`), false);
+    }
+  }
 });
 
 
@@ -191,39 +237,70 @@ router.put('/salas/:id', authenticateAdmin, upload.fields([
 ]), async (req, res) => {
   try {
     const { id } = req.params;
-    const {
-      numero, andar, nome, area, posicao, preco, disponivel
-    } = req.body;
 
-    // Log da operação iniciada
-    const fs = require('fs');
-    const logOperation = (operation, req, data = {}) => {
-      const timestamp = new Date().toISOString();
-      const route = req ? `${req.method} ${req.path}` : 'SYSTEM';
-      const ip = req ? (req.ip || req.connection.remoteAddress) : 'UNKNOWN';
+    // Log inicial para debug
+    console.log('🔧 Iniciando edição de sala:', {
+      salaId: id,
+      body: req.body,
+      files: req.files ? Object.keys(req.files) : 'nenhum arquivo',
+      hasAuth: !!req.headers.authorization
+    });
 
-      const logEntry = `[${timestamp}] ${route} - ${operation} - IP: ${ip} - Data: ${JSON.stringify(data)}\n`;
+    // Validar ID da sala
+    if (!id || isNaN(parseInt(id))) {
+      return res.status(400).json({
+        sucesso: false,
+        mensagem: 'ID da sala inválido'
+      });
+    }
 
-      if (!fs.existsSync('logs')) {
-        fs.mkdirSync('logs');
-      }
-
-      const logFile = `logs/operations-${new Date().toISOString().split('T')[0]}.log`;
-      fs.appendFileSync(logFile, logEntry);
-    };
-
-    logOperation('SALA_UPDATE_INICIADO', req, { salaId: id, dados: req.body });
-
-    // Buscar dados antes da alteração
+    // Buscar sala atual para comparação
     const salaAntes = await prisma.sala.findUnique({
       where: { id: parseInt(id) }
     });
 
     if (!salaAntes) {
-      logOperation('SALA_UPDATE_ERRO', req, { erro: 'Sala não encontrada', salaId: id });
       return res.status(404).json({
         sucesso: false,
         mensagem: 'Sala não encontrada'
+      });
+    }
+
+    const {
+      numero, andar, nome, area, posicao, preco, disponivel
+    } = req.body;
+
+    // Validações obrigatórias
+    if (!numero || !nome || !andar || !area || !preco) {
+      console.error('❌ Campos obrigatórios faltando:', {
+        numero: !!numero,
+        nome: !!nome, 
+        andar: !!andar,
+        area: !!area,
+        preco: !!preco
+      });
+
+      return res.status(400).json({
+        sucesso: false,
+        mensagem: 'Campos obrigatórios: número, nome, andar, área e preço'
+      });
+    }
+
+    // Converter e validar tipos
+    const andarNum = parseInt(andar);
+    const areaNum = parseFloat(area);
+    const precoNum = parseFloat(preco);
+
+    if (isNaN(andarNum) || isNaN(areaNum) || isNaN(precoNum)) {
+      console.error('❌ Tipos de dados inválidos:', {
+        andar: andarNum,
+        area: areaNum,
+        preco: precoNum
+      });
+
+      return res.status(400).json({
+        sucesso: false,
+        mensagem: 'Tipos de dados inválidos: andar, área e preço devem ser números'
       });
     }
 
@@ -233,27 +310,43 @@ router.put('/salas/:id', authenticateAdmin, upload.fields([
 
     const updateData = {
       numero: String(numero),
-      andar: parseInt(andar),
+      andar: andarNum,
       nome: String(nome),
-      area: parseFloat(area),
+      area: areaNum,
       posicao: String(posicao || ''),
-      preco: parseFloat(preco),
+      preco: precoNum,
       disponivel: disponivel === 'true' || disponivel === true
     };
 
-    if (imagemFile) updateData.imagem = imagemFile.filename;
-    if (plantaFile) updateData.planta = plantaFile.filename;
-    if (propostaPdfFile) updateData.proposta_pdf = propostaPdfFile.filename;
+    // Adicionar arquivos se enviados
+    if (imagemFile) {
+      console.log('📷 Arquivo de imagem recebido:', imagemFile.filename);
+      updateData.imagem = imagemFile.filename;
+    }
+    if (plantaFile) {
+      console.log('📋 Arquivo de planta recebido:', plantaFile.filename);
+      updateData.planta = plantaFile.filename;
+    }
+    if (propostaPdfFile) {
+      console.log('📄 Arquivo PDF recebido:', propostaPdfFile.filename);
+      updateData.proposta_pdf = propostaPdfFile.filename;
+    }
+
+    console.log('🔄 Dados para atualização:', updateData);
 
     const sala = await prisma.sala.update({
-      where: { id: salaAntes.id },
+      where: { id: parseInt(id) },
       data: updateData
     });
 
     // Registrar no histórico
     await registrarHistorico(req, 'UPDATE', 'salas', sala.id, salaAntes, updateData);
 
-    logOperation('SALA_UPDATE_SUCESSO', req, { salaId: sala.id, nome: sala.nome });
+    console.log('✅ Sala atualizada com sucesso:', {
+      salaId: sala.id,
+      nome: sala.nome,
+      numero: sala.numero
+    });
 
     res.json({
       sucesso: true,
@@ -267,9 +360,11 @@ router.put('/salas/:id', authenticateAdmin, upload.fields([
     const logEntry = `
 [${timestamp}] PUT /api/admin/salas/${req.params.id}
 IP: ${req.ip || req.connection.remoteAddress}
+User-Agent: ${req.headers['user-agent']}
 ERROR: ${error.message}
 Stack: ${error.stack}
 Body: ${JSON.stringify(req.body, null, 2)}
+Files: ${req.files ? JSON.stringify(Object.keys(req.files)) : 'nenhum'}
 ${'='.repeat(80)}
 `;
 
@@ -277,24 +372,22 @@ ${'='.repeat(80)}
       fs.mkdirSync('logs');
     }
 
-    fs.appendFileSync(`logs/error-${new Date().toISOString().split('T')[0]}.log`, logEntry);
+    const logFile = `logs/error-${timestamp.split('T')[0]}.log`;
+    fs.appendFileSync(logFile, logEntry);
 
-    console.error('Erro ao atualizar sala:', error);
-
-    // Resposta amigável para o frontend
-    let mensagem = 'Erro ao atualizar sala';
-
-    if (error.message.includes('Unknown argument')) {
-      mensagem = 'Erro de validação dos dados da sala';
-    } else if (error.code === 'P2002') {
-      mensagem = 'Já existe uma sala com estes dados';
-    }
+    console.error('❌ Erro detalhado na edição da sala:', {
+      salaId: req.params.id,
+      erro: error.message,
+      codigo: error.code,
+      body: req.body,
+      files: req.files,
+      stack: error.stack
+    });
 
     res.status(500).json({
       sucesso: false,
-      mensagem,
-      codigo: 'SALA_UPDATE_ERROR',
-      timestamp: new Date().toISOString()
+      mensagem: 'Erro ao atualizar sala: ' + error.message,
+      codigo: error.code || 'UNKNOWN_ERROR'
     });
   }
 });

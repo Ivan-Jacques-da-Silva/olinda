@@ -223,16 +223,23 @@ function Sessao1() {
 
                   <div
                     className="d-flex linha-andares-texto"
+                    data-andar={andar}
                     style={{
                       position: "absolute",
                       top: `${top - 5}px`,
-                      // left: '360px',
                       fontWeight: 300,
                       whiteSpace: "nowrap",
                     }}
                   >
-                    {andar}º Andar
-                    {andar === 16 && " - Cobertura"}
+
+                    {andar === 16 ? (
+                      <div className="texto-andar-16">
+                        <span>16º Andar</span>
+                        <span className="d-block d-md-inline amdar-160-cobertura">Cobertura</span>
+                      </div>
+                    ) : `${andar}º Andar`}
+
+
                     {/* {andar === 5 && (
                       <>
                         <br />

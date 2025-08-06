@@ -13,7 +13,7 @@ async function main() {
       preco: 2000000.00,
       disponivel: true,
       imagem: "seedImg/aptipo1.png",
-      planta: "seedPlanta/plantatipo1.png",
+      planta: "seedPlanta/plantatipo1topo.png",
       proposta_pdf: "uploads/Proposta - Olinda Residence 1601.pdf",
     },
   });
@@ -194,7 +194,7 @@ async function main() {
       preco: 2114750.00,
       disponivel: true,
       imagem: "seedImg/aptipo2.png",
-      planta: "seedPlanta/plantatipo2.png",
+      planta: "seedPlanta/plantatipo2topo.png",
       proposta_pdf: "uploads/Proposta - Olinda Residence 1602.pdf",
     },
   });

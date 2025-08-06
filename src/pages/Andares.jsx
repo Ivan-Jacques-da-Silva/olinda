@@ -3,7 +3,7 @@ import Salas from "./../api/Salas.jsx";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams, Link } from "react-router-dom";
-import { Container, Row, Col, Button, Offcanvas } from "react-bootstrap";
+import { Container, Row, Col, Button, Offcanvas, Modal } from "react-bootstrap";
 import "../styles/Andares.css";
 import logo from "../img/logo.png";
 import Config from "../Config";
@@ -17,6 +17,10 @@ const salasCom = [
 const Andares = () => {
     const [searchParams] = useSearchParams();
     const andarUrl = searchParams.get("andar");
+    const [showModal, setShowModal] = useState(false);
+    const [showContatoModal, setShowContatoModal] = useState(false);
+    const [showZoom, setShowZoom] = useState(false);
+    const [imagemZoom, setImagemZoom] = useState(null);
     const [larguraTela, setLarguraTela] = useState(window.innerWidth);
     const [andarSelecionado, setAndarSelecionado] = useState("16° andar");
     const [salaSelecionada, setSalaSelecionada] = useState(1);
@@ -176,6 +180,22 @@ const Andares = () => {
         } finally {
             setIsSubmitting(false);
         }
+    };
+
+    const abrirModalContato = () => {
+        setShowContatoModal(true);
+    };
+
+    const abrirZoomPlanta = (imagemSrc, nomeApartamento) => {
+        setImagemZoom({ src: imagemSrc, nome: nomeApartamento });
+        setShowZoom(true);
+        document.body.style.overflow = 'hidden'; // Previne scroll do body
+    };
+
+    const fecharZoom = () => {
+        setShowZoom(false);
+        setImagemZoom(null);
+        document.body.style.overflow = 'auto'; // Restaura scroll do body
     };
 
     return (
@@ -415,21 +435,28 @@ const Andares = () => {
                                                     }
                                                     alt={`Planta da Sala ${salaSelecionada}`}
                                                     className="img-fluid justify-content-center px-3 planta-img"
-                                                    style={{ height: "auto" }}
+                                                    style={{ 
+                                                        height: "auto", 
+                                                        cursor: "pointer"
+                                                    }}
+                                                    onClick={() => abrirZoomPlanta(
+                                                        `${Config.api_url}${salaAtual.arquivos.plantas[0].baixar}`,
+                                                        salaAtual.atributos.nome[0].valor
+                                                    )}
                                                     onError={(e) =>
                                                     (e.target.style.display =
                                                         "none")
                                                     }
+                                                    title="Clique para ampliar a planta"
                                                 />
                                             ) : (
                                                 <div
                                                     className="d-flex justify-content-center align-items-center"
                                                     style={{ height: "200px" }}
                                                 >
-                                                    <div
-                                                        className="spinner-border text-primary"
-                                                        role="status"
-                                                    />
+                                                    <p className="text-muted">
+                                                        Planta não disponível
+                                                    </p>
                                                 </div>
                                             )}
                                         </motion.div>
@@ -720,6 +747,102 @@ const Andares = () => {
                     </Col>
                 </Row>
             </Container>
+
+            {/* Modal Contato */}
+            <Modal
+                show={showContatoModal}
+                onHide={() => setShowContatoModal(false)}
+                size="lg"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Entre em Contato</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p className="mb-4">
+                        Para mais informações sobre este apartamento, entre em
+                        contato conosco:
+                    </p>
+                    <div className="d-grid gap-3">
+                        <a
+                            href="https://wa.me/5549999999999"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-success btn-lg d-flex align-items-center justify-content-center"
+                        >
+                            <i className="bi bi-whatsapp me-2"></i>
+                            WhatsApp
+                        </a>
+                        <a
+                            href="tel:+5549999999999"
+                            className="btn btn-primary btn-lg d-flex align-items-center justify-content-center"
+                        >
+                            <i className="bi bi-telephone me-2"></i>
+                            Ligar Agora
+                        </a>
+                        <a
+                            href="mailto:contato@example.com"
+                            className="btn btn-outline-primary btn-lg d-flex align-items-center justify-content-center"
+                        >
+                            <i className="bi bi-envelope me-2"></i>
+                            E-mail
+                        </a>
+                    </div>
+                </Modal.Body>
+            </Modal>
+
+            {/* Zoom Overlay - Simples sem Modal */}
+            {showZoom && imagemZoom && (
+                <div 
+                    className="zoom-overlay"
+                    onClick={fecharZoom}
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100vw',
+                        height: '100vh',
+                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        zIndex: 9999,
+                        cursor: 'pointer'
+                    }}
+                >
+                    {/* Botão X para fechar */}
+                    <div
+                        onClick={fecharZoom}
+                        style={{
+                            position: 'absolute',
+                            top: '20px',
+                            right: '30px',
+                            color: 'white',
+                            fontSize: '40px',
+                            fontWeight: 'bold',
+                            cursor: 'pointer',
+                            zIndex: 10000,
+                            userSelect: 'none'
+                        }}
+                    >
+                        ×
+                    </div>
+
+                    {/* Imagem da planta */}
+                    <img
+                        src={imagemZoom.src}
+                        alt={`Planta do ${imagemZoom.nome}`}
+                        onClick={(e) => e.stopPropagation()} // Previne fechar ao clicar na imagem
+                        style={{
+                            maxWidth: '90vw',
+                            maxHeight: '90vh',
+                            objectFit: 'contain',
+                            borderRadius: '8px',
+                            boxShadow: '0 8px 32px rgba(0,0,0,0.5)'
+                        }}
+                    />
+                </div>
+            )}
         </div>
     );
 };

@@ -9,7 +9,23 @@ const prisma = new PrismaClient();
 // Configuração do multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './uploads/');
+    const fs = require('fs');
+    
+    let uploadDir = './uploads/';
+    
+    // Definir pasta específica baseada no tipo de arquivo
+    if (file.fieldname === 'planta') {
+      uploadDir = './uploads/seedPlanta/';
+    } else if (file.fieldname === 'imagem') {
+      uploadDir = './uploads/seedImg/';
+    }
+
+    // Criar diretório se não existir
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+
+    cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
     // Manter o nome original do arquivo
