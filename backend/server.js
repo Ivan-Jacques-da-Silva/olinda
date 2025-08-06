@@ -85,18 +85,69 @@ const errorHandler = (err, req, res, next) => {
 };
 
 // ========== CORS ==========
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'http://localhost:5000',
+  'http://127.0.0.1:5000',
+  'https://olindaresidence.com.br',
+  'https://api.olindaresidence.com.br'
+];
+
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    'https://olindaresidence.com.br',
+  origin: function (origin, callback) {
+    // Permitir requisições sem origin (como mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    console.log('🚫 Origin não permitida:', origin);
+    return callback(null, false);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: [
+    'Content-Type', 
+    'Authorization', 
+    'X-Requested-With',
+    'Accept',
+    'Origin',
+    'Cache-Control',
+    'Pragma'
   ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: true,
+  optionsSuccessStatus: 200,
+  maxAge: 86400 // Cache preflight por 24 horas
 }));
 
-app.options('*', cors());
+// Middleware global para headers CORS - executado ANTES das rotas
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  
+  // Sempre definir o header Access-Control-Allow-Origin
+  if (origin && allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  } else if (!origin) {
+    // Para requisições sem origin (ex: mesmo domínio)
+    res.header('Access-Control-Allow-Origin', '*');
+  }
+  
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS,PATCH');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With,Accept,Origin,Cache-Control,Pragma');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Max-Age', '86400');
+  
+  // Log para debug
+  console.log(`🌐 ${req.method} ${req.path} - Origin: ${origin || 'sem origin'}`);
+  
+  if (req.method === 'OPTIONS') {
+    console.log('✅ Respondendo OPTIONS para', req.path);
+    return res.status(200).end();
+  }
+  
+  next();
+});
 
 // Webhook de TESTE
 app.post('/stripe/webhook/teste', express.raw({ type: 'application/json' }), async (req, res) => {
