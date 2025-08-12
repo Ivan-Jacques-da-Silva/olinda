@@ -4,10 +4,12 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-const handleCheckoutCompleted = async (session) => {
+const handleCheckoutCompleted = async (session, environment = 'production') => {
   try {
     console.log('🎉 ========== PAGAMENTO CONCLUÍDO ==========');
     console.log('🎉 SESSION ID:', session.id);
+    console.log('🎉 AMBIENTE:', environment);
+    console.log('🎉 LIVEMODE:', session.livemode);
     console.log('🎉 TIMESTAMP:', new Date().toISOString());
     console.log('📋 DADOS COMPLETOS DA SESSÃO RECEBIDA:');
     console.log('================================');
@@ -17,6 +19,15 @@ const handleCheckoutCompleted = async (session) => {
     console.log('💰 Valor total pago:', session.amount_total ? (session.amount_total / 100) : 'N/A');
     console.log('💳 Status do pagamento:', session.payment_status);
     console.log('📞 Dados do cliente:', session.customer_details);
+    
+    // IMPORTANTE: Se for ambiente de teste, apenas simular sem alterar banco
+    if (environment === 'test') {
+      console.log('🧪 ========== MODO TESTE ATIVO ==========');
+      console.log('🧪 Simulando processamento sem alterar banco de dados');
+      console.log('🧪 Em produção, a sala seria marcada como indisponível');
+      console.log('🧪 ======================================');
+      return;
+    }
     
     // PRIMEIRO: Verificar se temos sala_id
     const salaId = session.metadata?.sala_id;
@@ -253,9 +264,15 @@ const handleCheckoutCompleted = async (session) => {
   }
 };
 
-const handleCheckoutExpired = async (session) => {
+const handleCheckoutExpired = async (session, environment = 'production') => {
   try {
-    console.log('⏰ Checkout expirado:', session.id);
+    console.log('⏰ Checkout expirado:', session.id, 'ambiente:', environment);
+    
+    // Se for teste, apenas simular
+    if (environment === 'test') {
+      console.log('🧪 TESTE: Simulando expiração de checkout');
+      return;
+    }
     
     const salaId = session.metadata?.sala_id;
     if (!salaId) {
@@ -277,9 +294,15 @@ const handleCheckoutExpired = async (session) => {
   }
 };
 
-const handleChargeRefunded = async (charge) => {
+const handleChargeRefunded = async (charge, environment = 'production') => {
   try {
-    console.log('💰 Cobrança estornada:', charge.id);
+    console.log('💰 Cobrança estornada:', charge.id, 'ambiente:', environment);
+    
+    // Se for teste, apenas simular
+    if (environment === 'test') {
+      console.log('🧪 TESTE: Simulando estorno de cobrança');
+      return;
+    }
     
     // Buscar a sessão relacionada ao charge
     const sessions = await stripe.checkout.sessions.list({
@@ -328,26 +351,44 @@ const handleChargeRefunded = async (charge) => {
   }
 };
 
-const processWebhookEvent = async (event) => {
+const processWebhookEvent = async (event, environment = 'production') => {
   try {
+    console.log(`🔄 Processando evento ${event.type} no ambiente: ${environment}`);
+    console.log(`🔄 Modo livemode do evento: ${event.livemode}`);
+    console.log(`🔄 ID do evento: ${event.id}`);
+    
+    // Validar consistência entre ambiente e livemode
+    const isProductionEnv = environment === 'production';
+    const isLivemodeEvent = event.livemode === true;
+    
+    if (isProductionEnv && !isLivemodeEvent) {
+      console.warn('⚠️ AVISO: Evento de teste recebido no ambiente de produção - IGNORANDO');
+      return;
+    }
+    
+    if (!isProductionEnv && isLivemodeEvent) {
+      console.warn('⚠️ AVISO: Evento de produção recebido no ambiente de teste - IGNORANDO');
+      return;
+    }
+    
     switch (event.type) {
       case 'checkout.session.completed':
-        await handleCheckoutCompleted(event.data.object);
+        await handleCheckoutCompleted(event.data.object, environment);
         break;
         
       case 'checkout.session.expired':
-        await handleCheckoutExpired(event.data.object);
+        await handleCheckoutExpired(event.data.object, environment);
         break;
         
       case 'charge.refunded':
-        await handleChargeRefunded(event.data.object);
+        await handleChargeRefunded(event.data.object, environment);
         break;
         
       default:
-        console.log(`⚠️ Evento não tratado: ${event.type}`);
+        console.log(`⚠️ Evento não tratado: ${event.type} (ambiente: ${environment})`);
     }
   } catch (error) {
-    console.error(`❌ Erro ao processar evento ${event.type}:`, error);
+    console.error(`❌ Erro ao processar evento ${event.type} no ambiente ${environment}:`, error);
     throw error;
   }
 };

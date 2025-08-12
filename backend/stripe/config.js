@@ -103,12 +103,21 @@ console.log('✅ Price ID:', STRIPE_CONFIG.priceId || 'Não configurado (usando 
 console.log('✅ Webhook Secret:', STRIPE_CONFIG.webhookSecret ? 'Configurado' : 'Erro');
 console.log('✅ Checkout URL:', STRIPE_CONFIG.checkoutUrl);
 
+// Log detalhado das chaves para detectar modo
+console.log('🔍 ========== DETECÇÃO DE MODO ==========');
+console.log('🔍 Public Key inicia com:', STRIPE_CONFIG.publicKey?.substring(0, 15) + '...');
+console.log('🔍 Secret Key inicia com:', STRIPE_CONFIG.secretKey?.substring(0, 15) + '...');
+console.log('🔍 É modo teste?:', STRIPE_CONFIG.isTestMode);
+console.log('🔍 É modo produção?:', STRIPE_CONFIG.isProductionMode);
+console.log('🔍 ====================================');
+
 // Aviso visual para modo atual
 if (STRIPE_CONFIG.isTestMode) {
   console.log('');
   console.log('🧪 ========== MODO DE TESTE ATIVO ==========');
   console.log('🧪 Todos os pagamentos são simulados');
   console.log('🧪 Nenhuma cobrança real será feita');
+  console.log('🧪 Webhooks de teste NÃO alteram o banco de dados');
   console.log('🧪 Use dados de teste do Stripe');
   console.log('🧪 Para produção: comente as linhas de TESTE e descomente PRODUÇÃO no .env');
   console.log('🧪 =========================================');
@@ -118,7 +127,9 @@ if (STRIPE_CONFIG.isTestMode) {
   console.log('🔴 ========== MODO PRODUÇÃO ATIVO ==========');
   console.log('🔴 ATENÇÃO: Pagamentos reais serão processados!');
   console.log('🔴 Clientes serão cobrados de verdade');
+  console.log('🔴 Webhooks de produção alteram o banco de dados');
   console.log('🔴 Verifique se todas as configurações estão corretas');
+  console.log('🔴 Para teste: comente as linhas de PRODUÇÃO e descomente TESTE no .env');
   console.log('🔴 Para teste: comente as linhas de PRODUÇÃO e descomente TESTE no .env');
   console.log('🔴 ========================================');
   console.log('');

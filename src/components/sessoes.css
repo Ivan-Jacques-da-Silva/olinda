@@ -104,10 +104,38 @@
   }
 
   .amdar-160-cobertura {
-    margin-left: 0!important;
+    margin-left: 0 !important;
   }
 }
 
 .amdar-160-cobertura {
   margin-left: 7px;
+}
+
+/* Forçar remoção de qualquer pontilhado/sublinhado nos textos dos andares */
+.linha-andares-texto,
+.linha-andares-texto *,
+.texto-andar-16,
+.texto-andar-16 * {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-style: none !important;
+  text-decoration-color: transparent !important;
+  border-bottom: none !important;
+  outline: none !important;
+  text-underline-offset: 0 !important;
+  -webkit-text-decoration: none !important;
+  -moz-text-decoration: none !important;
+}
+
+/* Garantir que não apareça pontilhado em hover/focus */
+.linha-andares-texto:hover,
+.linha-andares-texto:focus,
+.linha-andares-texto:active,
+.texto-andar-16:hover,
+.texto-andar-16:focus,
+.texto-andar-16:active {
+  text-decoration: none !important;
+  outline: none !important;
+  border-bottom: none !important;
 }

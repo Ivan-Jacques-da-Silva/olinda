@@ -2,20 +2,16 @@ import FormularioData from "../api/FormulariosData";
 import Salas from "./../api/Salas.jsx";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Button, Offcanvas, Modal } from "react-bootstrap";
 import "../styles/Andares.css";
 import logo from "../img/logo.png";
 import Config from "../Config";
 
-const salasCom = [
-    603, 606, 607, 608, 701, 705, 706, 707, 708, 801, 807, 808, 901, 903, 906,
-    907, 1001, 1007, 1008, 1105, 1106, 1107, 1108, 1205, 1206, 1208, 1305, 1306,
-    1307, 1308, 1401, 1405, 1501, 1601,
-];
 
 const Andares = () => {
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
     const andarUrl = searchParams.get("andar");
     const [showModal, setShowModal] = useState(false);
     const [showContatoModal, setShowContatoModal] = useState(false);
@@ -34,6 +30,20 @@ const Andares = () => {
     useEffect(() => {
         if (andarUrl) setAndarSelecionado(`${andarUrl}° andar`);
     }, [andarUrl]);
+
+    // Função para trocar andar e atualizar URL sem reload
+    const trocarAndar = (novoAndar) => {
+        setAndarSelecionado(novoAndar);
+        setSalaSelecionada(1); // Reset para primeira sala
+        
+        // Extrair número do andar (ex: "16° andar" -> "16")
+        const numeroAndar = novoAndar.replace('° andar', '');
+        
+        // Atualizar URL sem reload
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.set('andar', numeroAndar);
+        setSearchParams(newSearchParams, { replace: true });
+    };
 
     useEffect(() => {
         const handleResize = () => setLarguraTela(window.innerWidth);
@@ -331,7 +341,7 @@ const Andares = () => {
                                             : "outline-dark"
                                     }
                                     className="mb-1 text-start"
-                                    onClick={() => setAndarSelecionado(andar)}
+                                    onClick={() => trocarAndar(andar)}
                                 >
                                     {andar}
                                 </Button>
@@ -348,7 +358,7 @@ const Andares = () => {
                                             : "outline-dark"
                                     }
                                     style={{ minWidth: "70px" }}
-                                    onClick={() => setAndarSelecionado(andar)}
+                                    onClick={() => trocarAndar(andar)}
                                 >
                                     {andar}
                                 </Button>
@@ -400,7 +410,6 @@ const Andares = () => {
                                     setSalaSelecionada={setSalaSelecionada}
                                     larguraTela={larguraTela}
                                     andarSelecionado={andarSelecionado}
-                                    salasCom={salasCom}
                                     setMostrarProposta={setMostrarProposta}
                                 />
                             </div>
