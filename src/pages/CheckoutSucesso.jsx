@@ -41,7 +41,7 @@ function CheckoutSucesso() {
   return (
     <div style={{ 
       minHeight: '100vh', 
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #135454 0%, rgba(2, 105, 105, 1) 100%)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -63,7 +63,7 @@ function CheckoutSucesso() {
               width: '60px',
               height: '60px',
               border: '4px solid #f3f3f3',
-              borderTop: '4px solid #667eea',
+              borderTop: '4px solid #135454',
               borderRadius: '50%',
               animation: 'spin 1s linear infinite',
               margin: '0 auto 30px'
@@ -107,7 +107,7 @@ function CheckoutSucesso() {
               marginBottom: '30px',
               lineHeight: '1.6'
             }}>
-              Sua reserva foi efetuada com sucesso. Em breve entraremos em contato para concluir sua negociação! Seja Bem Vindo ao Novo! Olinda Residence
+              Sua reserva foi efetuada com sucesso. Em breve entraremos em contato para concluir sua negociação! Olinda Residence
             </p>
             
             {dadosSessao?.metadata?.nome_sala && (
@@ -128,7 +128,7 @@ function CheckoutSucesso() {
               <Link 
                 to="/" 
                 style={{
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                  background: 'linear-gradient(135deg, #135454, #0d8f8fff)',
                   color: 'white',
                   padding: '12px 30px',
                   borderRadius: '25px',
@@ -146,21 +146,21 @@ function CheckoutSucesso() {
                 to="/andares" 
                 style={{
                   background: 'transparent',
-                  color: '#667eea',
+                  color: '#135454',
                   padding: '12px 30px',
                   borderRadius: '25px',
                   textDecoration: 'none',
                   fontWeight: '600',
-                  border: '2px solid #667eea',
+                  border: '2px solid #135454',
                   transition: 'all 0.2s'
                 }}
                 onMouseOver={(e) => {
-                  e.target.style.background = '#667eea';
+                  e.target.style.background = '#135454';
                   e.target.style.color = 'white';
                 }}
                 onMouseOut={(e) => {
                   e.target.style.background = 'transparent';
-                  e.target.style.color = '#667eea';
+                  e.target.style.color = '#135454';
                 }}
               >
                 Ver Outras Salas
@@ -213,12 +213,12 @@ function CheckoutSucesso() {
                 to="/" 
                 style={{
                   background: 'transparent',
-                  color: '#667eea',
+                  color: '#135454',
                   padding: '12px 30px',
                   borderRadius: '25px',
                   textDecoration: 'none',
                   fontWeight: '600',
-                  border: '2px solid #667eea'
+                  border: '2px solid #135454'
                 }}
               >
                 Voltar ao Início
@@ -253,7 +253,7 @@ function CheckoutSucesso() {
               <button 
                 onClick={verificarPagamento}
                 style={{
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                  background: 'linear-gradient(135deg, #135454, #119c9cff)',
                   color: 'white',
                   padding: '12px 30px',
                   borderRadius: '25px',
@@ -268,12 +268,12 @@ function CheckoutSucesso() {
                 to="/" 
                 style={{
                   background: 'transparent',
-                  color: '#667eea',
+                  color: '#135454',
                   padding: '12px 30px',
                   borderRadius: '25px',
                   textDecoration: 'none',
                   fontWeight: '600',
-                  border: '2px solid #667eea'
+                  border: '2px solid #135454'
                 }}
               >
                 Voltar ao Início

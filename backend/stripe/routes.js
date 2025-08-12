@@ -187,7 +187,7 @@ router.post('/create-checkout-session', async (req, res) => {
     }
 
     // Usar a URL correta do frontend em produção
-    const baseUrl = req.headers.origin || 'https://olindaresidence.com.br/sistema';
+    const baseUrl = 'https://olindaresidence.com.br/sistema';
 
     let sessionData = {
       payment_method_types: ['card'],
@@ -222,7 +222,7 @@ router.post('/create-checkout-session', async (req, res) => {
 
     // VALOR FIXO DE ENTRADA: R$25000,00
     // Não usa o valor do imóvel, sempre cobra R$25000,00 como entrada
-    const VALOR_ENTRADA_FIXO = 25000.00; // valor em reais
+    const VALOR_ENTRADA_FIXO = 25.00; // valor em reais
 
     // Sempre usar price_data para evitar problemas com Price IDs inexistentes
     console.log(`💰 Criando price_data com valor fixo: R$ ${VALOR_ENTRADA_FIXO}`);
