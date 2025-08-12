@@ -119,7 +119,7 @@ function CheckoutSucesso() {
                 marginBottom: '30px'
               }}>
                 <strong style={{ color: '#2E7D32', fontSize: '16px' }}>
-                  Sala reservada: {dadosSessao.metadata.nome_sala}
+                  Apartamento reservada: {dadosSessao.metadata.nome_sala}
                 </strong>
               </div>
             )}
@@ -163,7 +163,7 @@ function CheckoutSucesso() {
                   e.target.style.color = '#135454';
                 }}
               >
-                Ver Outras Salas
+                Ver Outros Apartamentos
               </Link>
             </div>
           </div>

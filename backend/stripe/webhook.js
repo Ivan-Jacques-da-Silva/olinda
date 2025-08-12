@@ -20,14 +20,13 @@ const handleCheckoutCompleted = async (session, environment = 'production') => {
     console.log('💳 Status do pagamento:', session.payment_status);
     console.log('📞 Dados do cliente:', session.customer_details);
     
-    // IMPORTANTE: Se for ambiente de teste, apenas simular sem alterar banco
-    if (environment === 'test') {
-      console.log('🧪 ========== MODO TESTE ATIVO ==========');
-      console.log('🧪 Simulando processamento sem alterar banco de dados');
-      console.log('🧪 Em produção, a sala seria marcada como indisponível');
-      console.log('🧪 ======================================');
-      return;
-    }
+    // Sempre alterar o banco de dados, independente se é teste ou produção
+    const isLivemodeEvent = session.livemode === true;
+    console.log(`💼 ========== PROCESSANDO PAGAMENTO ==========`);
+    console.log(`💼 Tipo de evento: ${isLivemodeEvent ? 'PRODUÇÃO' : 'TESTE'}`);
+    console.log(`💼 Ambiente: ${environment}`);
+    console.log(`💼 BANCO DE DADOS SERÁ ALTERADO - ${isLivemodeEvent ? 'VENDA REAL' : 'TESTE FUNCIONAL'}`);
+    console.log(`💼 ===========================================`);
     
     // PRIMEIRO: Verificar se temos sala_id
     const salaId = session.metadata?.sala_id;
@@ -268,11 +267,9 @@ const handleCheckoutExpired = async (session, environment = 'production') => {
   try {
     console.log('⏰ Checkout expirado:', session.id, 'ambiente:', environment);
     
-    // Se for teste, apenas simular
-    if (environment === 'test') {
-      console.log('🧪 TESTE: Simulando expiração de checkout');
-      return;
-    }
+    // Sempre processar expiração, alterando o banco de dados
+    const isLivemodeEvent = session.livemode === true;
+    console.log(`⏰ Processando expiração ${isLivemodeEvent ? 'PRODUÇÃO' : 'TESTE'} - alterando banco de dados`);
     
     const salaId = session.metadata?.sala_id;
     if (!salaId) {
@@ -298,11 +295,9 @@ const handleChargeRefunded = async (charge, environment = 'production') => {
   try {
     console.log('💰 Cobrança estornada:', charge.id, 'ambiente:', environment);
     
-    // Se for teste, apenas simular
-    if (environment === 'test') {
-      console.log('🧪 TESTE: Simulando estorno de cobrança');
-      return;
-    }
+    // Sempre processar estorno, alterando o banco de dados
+    const isLivemodeEvent = charge.livemode === true;
+    console.log(`💰 Processando estorno ${isLivemodeEvent ? 'PRODUÇÃO' : 'TESTE'} - alterando banco de dados`);
     
     // Buscar a sessão relacionada ao charge
     const sessions = await stripe.checkout.sessions.list({
@@ -357,19 +352,9 @@ const processWebhookEvent = async (event, environment = 'production') => {
     console.log(`🔄 Modo livemode do evento: ${event.livemode}`);
     console.log(`🔄 ID do evento: ${event.id}`);
     
-    // Validar consistência entre ambiente e livemode
-    const isProductionEnv = environment === 'production';
+    // Processar todos os eventos independente se é teste ou produção
     const isLivemodeEvent = event.livemode === true;
-    
-    if (isProductionEnv && !isLivemodeEvent) {
-      console.warn('⚠️ AVISO: Evento de teste recebido no ambiente de produção - IGNORANDO');
-      return;
-    }
-    
-    if (!isProductionEnv && isLivemodeEvent) {
-      console.warn('⚠️ AVISO: Evento de produção recebido no ambiente de teste - IGNORANDO');
-      return;
-    }
+    console.log(`✅ Processando evento ${isLivemodeEvent ? 'PRODUÇÃO' : 'TESTE'} no ambiente: ${environment}`);
     
     switch (event.type) {
       case 'checkout.session.completed':

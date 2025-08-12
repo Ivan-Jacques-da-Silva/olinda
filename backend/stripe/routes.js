@@ -25,19 +25,8 @@ router.post('/webhook', async (req, res) => {
   console.log('🔍 Endpoint: /stripe/webhook (PRODUÇÃO)');
   console.log('🔍 =============================================');
 
-  // IMPORTANTE: Se estiver em modo de teste, rejeitar webhooks de produção
-  if (STRIPE_CONFIG.isTestMode) {
-    console.warn('⚠️ ========== AVISO IMPORTANTE ==========');
-    console.warn('⚠️ Webhook de PRODUÇÃO recebido em modo TESTE!');
-    console.warn('⚠️ Rejeitando para evitar alterações indevidas');
-    console.warn('⚠️ Use /stripe/webhook/teste para webhooks de teste');
-    console.warn('⚠️ =====================================');
-    return res.status(200).json({ 
-      received: false, 
-      error: 'Sistema em modo de teste - webhook de produção rejeitado',
-      environment: 'test_mode_active'
-    });
-  }
+  // Processar webhooks independente do modo (teste ou produção)
+  console.log('✅ Processando webhook - modo atual:', STRIPE_CONFIG.isTestMode ? 'TESTE' : 'PRODUÇÃO');
 
   // Verificar se o webhook secret está configurado
   if (!STRIPE_CONFIG.webhookSecret) {
@@ -50,15 +39,8 @@ router.post('/webhook', async (req, res) => {
     event = stripe.webhooks.constructEvent(req.body, sig, STRIPE_CONFIG.webhookSecret);
     console.log(`✅ Assinatura verificada - Evento PRODUÇÃO: ${event.type}`);
     
-    // Validar se o evento é realmente de produção
-    if (event.livemode === false) {
-      console.warn('⚠️ Evento de teste recebido no webhook de produção - rejeitando');
-      return res.status(200).json({ 
-        received: false, 
-        error: 'Evento de teste no webhook de produção',
-        environment: 'production_rejects_test'
-      });
-    }
+    // Processar eventos de teste e produção normalmente
+    console.log(`✅ Processando evento ${event.livemode ? 'PRODUÇÃO' : 'TESTE'}: ${event.type}`);
   } catch (err) {
     console.error('❌ Erro na verificação da assinatura do webhook PRODUÇÃO:', {
       message: err.message,
@@ -113,19 +95,8 @@ router.post('/webhook/teste', async (req, res) => {
   console.log('🔍 Endpoint: /stripe/webhook/teste (TESTE)');
   console.log('🔍 ===========================================');
 
-  // IMPORTANTE: Se estiver em modo de produção, rejeitar webhooks de teste
-  if (!STRIPE_CONFIG.isTestMode) {
-    console.warn('⚠️ ========== AVISO IMPORTANTE ==========');
-    console.warn('⚠️ Webhook de TESTE recebido em modo PRODUÇÃO!');
-    console.warn('⚠️ Rejeitando para evitar alterações indevidas');
-    console.warn('⚠️ Use /stripe/webhook para webhooks de produção');
-    console.warn('⚠️ =====================================');
-    return res.status(200).json({ 
-      received: false, 
-      error: 'Sistema em modo de produção - webhook de teste rejeitado',
-      environment: 'production_mode_active'
-    });
-  }
+  // Processar webhooks independente do modo (teste ou produção)
+  console.log('✅ Processando webhook de teste - modo atual:', STRIPE_CONFIG.isTestMode ? 'TESTE' : 'PRODUÇÃO');
 
   // Verificar se o webhook secret está configurado
   if (!STRIPE_CONFIG.webhookSecret) {
@@ -138,15 +109,8 @@ router.post('/webhook/teste', async (req, res) => {
     event = stripe.webhooks.constructEvent(req.body, sig, STRIPE_CONFIG.webhookSecret);
     console.log(`✅ Assinatura verificada - Evento TESTE: ${event.type}`);
     
-    // Validar se o evento é realmente de teste
-    if (event.livemode === true) {
-      console.warn('⚠️ Evento de produção recebido no webhook de teste - rejeitando');
-      return res.status(200).json({ 
-        received: false, 
-        error: 'Evento de produção no webhook de teste',
-        environment: 'test_rejects_production'
-      });
-    }
+    // Processar eventos de teste e produção normalmente
+    console.log(`✅ Processando evento ${event.livemode ? 'PRODUÇÃO' : 'TESTE'}: ${event.type}`);
   } catch (err) {
     console.error('❌ Erro na verificação da assinatura do webhook TESTE:', {
       message: err.message,
