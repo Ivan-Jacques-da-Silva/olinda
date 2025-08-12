@@ -13,9 +13,9 @@ const prisma = new PrismaClient();
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const fs = require('fs');
-    
+
     let uploadDir = './uploads/';
-    
+
     // Definir pasta específica baseada no tipo de arquivo
     if (file.fieldname === 'planta') {
       uploadDir = './uploads/seedPlanta/';
@@ -464,6 +464,96 @@ router.get('/historico', authenticateAdmin, async (req, res) => {
       sucesso: false,
       mensagem: 'Erro ao buscar histórico: ' + error.message
     });
+  }
+});
+
+// Endpoint para verificar histórico completo de uma sala
+router.get('/sala/:salaId/historico', authenticateAdmin, async (req, res) => {
+  try {
+    const { salaId } = req.params;
+
+    const sala = await prisma.sala.findUnique({
+      where: { id: parseInt(salaId) },
+    });
+
+    if (!sala) {
+      return res.status(404).json({
+        sucesso: false,
+        mensagem: 'Sala não encontrada'
+      });
+    }
+
+    // Buscar histórico da sala
+    const historico = await prisma.historicoAlteracoes.findMany({
+      where: {
+        tabela: "salas",
+        registro_id: parseInt(salaId),
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    // Buscar pré-reserva se existir
+    const preReserva = await prisma.preReserva.findFirst({
+      where: { sala_id: parseInt(salaId) }
+    });
+
+    // Analisar mudanças de status
+    const mudancasStatus = historico.filter(h => 
+      h.dados_depois && 
+      h.dados_depois.hasOwnProperty('disponivel')
+    ).map(h => ({
+      data: h.createdAt,
+      usuario: h.usuario,
+      antes: h.dados_antes?.disponivel ? 'DISPONÍVEL' : 'INDISPONÍVEL',
+      depois: h.dados_depois?.disponivel ? 'DISPONÍVEL' : 'INDISPONÍVEL',
+      origem: h.dados_depois?.mudanca_status?.origem || 'DESCONHECIDA'
+    }));
+
+    res.json({
+      sucesso: true,
+      data: {
+        sala,
+        preReserva,
+        totalAlteracoes: historico.length,
+        mudancasStatus,
+        historicoCompleto: historico
+      }
+    });
+  } catch (error) {
+    console.error("❌ Erro ao buscar histórico da sala:", error);
+    res.status(500).json({ 
+      sucesso: false,
+      mensagem: error.message 
+    });
+  }
+});
+
+// Endpoint para debug - verificar última atualização de sala (mantido para compatibilidade)
+router.get('/debug/sala/:salaId', async (req, res) => {
+  try {
+    const { salaId } = req.params;
+
+    const sala = await prisma.sala.findUnique({
+      where: { id: parseInt(salaId) },
+    });
+
+    const ultimasAlteracoes = await prisma.historicoAlteracoes.findMany({
+      where: {
+        tabela: "salas",
+        registro_id: parseInt(salaId),
+      },
+      orderBy: { createdAt: "desc" },
+      take: 5,
+    });
+
+    res.json({
+      sala,
+      ultimasAlteracoes,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("❌ Erro no debug:", error);
+    res.status(500).json({ error: error.message });
   }
 });
 
